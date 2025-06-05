@@ -8,6 +8,8 @@ import TypeTaskHeader from "./TypeTaskHeader";
 import Task from "./Task";
 import TypingText from "../TypingText";
 import { db, getCurrentUser } from "../../../firebaseConfig";
+import Popup from "reactjs-popup";
+import IconList from "./IconList";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -37,6 +39,8 @@ export default function TaskPage() {
   const [taskIndex, setTaskIndex] = useState([]);
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
+  const [meanness, setMeanness] = useState("nice");
+  const [wordCount, setWordCount] = useState(150);
 
   //  Realtime Firestore sync
   useEffect(() => {
@@ -130,6 +134,8 @@ export default function TaskPage() {
                 <div className="flex-grow">
                   <Task
                     description={description}
+                    meanness={meanness}
+                    wordCount={wordCount}
                     column={columnKey}
                     index={itemIndex}
                     taskIndex={taskIndex}
@@ -168,18 +174,25 @@ export default function TaskPage() {
       </div>
 
       <div className="absolute top-6 right-8 flex pt-8 gap-4 z-50">
-        <button
-          onClick={() => alert("Add column clicked!")}
-          className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition"
-        >
+        <Popup
+          trigger={<button
+            className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition"
+          >
           info
-        </button>
-        <button
-          onClick={() => alert("Log out clicked!")}
-          className="border border-black text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition"
+          </button>}
+          position="bottom center"
+          closeOnDocumentClick
+          onOpen={async () => {
+          }}
+      >
+        <div
+          className={`rounded shadow p-4 max-w-60 text-black bg-gray-200`}
         >
-          settings
-        </button>
+          <h2 className={`${spaceGrotesk.className} text-lg text-black`}>what each symbol means: </h2>
+          <IconList 
+          />
+        </div>
+        </Popup>
       </div>
 
       <div className="flex items-center justify-center w-full">

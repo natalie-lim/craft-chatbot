@@ -12,7 +12,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 
-export default function Task({ description, column, index }) {
+export default function Task({ description, meanness, wordCount, column, index }) {
   const [taskName, setTaskName] = useState(description);
   const [isUpdating, setIsUpdating] = useState(false);
   const [user, setUser] = useState(null);
@@ -36,7 +36,7 @@ export default function Task({ description, column, index }) {
       const res = await fetch("/api/suggest", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: `Give suggestions for: ${taskName}` }),
+        body: JSON.stringify({ prompt: `Give suggestions for: ${taskName} and say it ${meanness} using only about ${wordCount} words` }),
       });
       const data = await res.json();
       return data.result;
