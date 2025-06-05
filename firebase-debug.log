@@ -1,0 +1,515 @@
+[debug] [2025-06-05T13:41:25.559Z] ----------------------------------------------------------------------
+[debug] [2025-06-05T13:41:25.561Z] Command:       /Users/natalielim/.nvm/versions/node/v20.19.2/bin/node /Users/natalielim/.nvm/versions/node/v20.19.2/bin/firebase deploy --only hosting
+[debug] [2025-06-05T13:41:25.561Z] CLI Version:   14.6.0
+[debug] [2025-06-05T13:41:25.561Z] Platform:      darwin
+[debug] [2025-06-05T13:41:25.561Z] Node Version:  v20.19.2
+[debug] [2025-06-05T13:41:25.561Z] Time:          Thu Jun 05 2025 06:41:25 GMT-0700 (Pacific Daylight Time)
+[debug] [2025-06-05T13:41:25.561Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-06-05T13:41:25.650Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-06-05T13:41:25.651Z] > authorizing via signed-in user (natalielim1906@gmail.com)
+[debug] [2025-06-05T13:41:25.651Z] [iam] checking project task-manager-4f8be for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-06-05T13:41:25.651Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:25.651Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:25.652Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions [none]
+[debug] [2025-06-05T13:41:25.652Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions x-goog-quota-user=projects/task-manager-4f8be
+[debug] [2025-06-05T13:41:25.652Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-06-05T13:41:25.967Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions 200
+[debug] [2025-06-05T13:41:25.967Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-06-05T13:41:25.968Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:25.968Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:25.968Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/task-manager-4f8be [none]
+[debug] [2025-06-05T13:41:26.475Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/task-manager-4f8be 200
+[debug] [2025-06-05T13:41:26.475Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/task-manager-4f8be {"projectId":"task-manager-4f8be","projectNumber":"299806984749","displayName":"task-manager","name":"projects/task-manager-4f8be","resources":{"hostingSite":"task-manager-4f8be","realtimeDatabaseInstance":"task-manager-4f8be-default-rtdb"},"state":"ACTIVE","etag":"1_8fd6ee55-76bd-4705-ad54-bee19df6308b"}
+[debug] [2025-06-05T13:41:27.192Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:27.192Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:27.192Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/task-manager-4f8be/sites pageToken=&pageSize=10
+[debug] [2025-06-05T13:41:27.963Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/task-manager-4f8be/sites 200
+[debug] [2025-06-05T13:41:27.963Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/task-manager-4f8be/sites {"sites":[{"name":"projects/task-manager-4f8be/sites/task-manager-4f8be","defaultUrl":"https://task-manager-4f8be.web.app","appId":"1:299806984749:web:98f92c253605d5107246a4","type":"DEFAULT_SITE"}]}
+[debug] [2025-06-05T13:41:27.964Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:27.964Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:27.964Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:299806984749:web:98f92c253605d5107246a4/config [none]
+[debug] [2025-06-05T13:41:28.204Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:299806984749:web:98f92c253605d5107246a4/config 200
+[debug] [2025-06-05T13:41:28.204Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:299806984749:web:98f92c253605d5107246a4/config {"projectId":"task-manager-4f8be","appId":"1:299806984749:web:98f92c253605d5107246a4","databaseURL":"https://task-manager-4f8be-default-rtdb.firebaseio.com","storageBucket":"task-manager-4f8be.firebasestorage.app","apiKey":"AIzaSyCXwVaGeaL1656E9A30UV9XR2zk3SJwDZ4","authDomain":"task-manager-4f8be.firebaseapp.com","messagingSenderId":"299806984749","measurementId":"G-H7WWKPFLF7"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-06-05T13:41:29.591Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:29.591Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:29.591Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/task-manager-4f8be/sites/task-manager-4f8be [none]
+[debug] [2025-06-05T13:41:29.959Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/task-manager-4f8be/sites/task-manager-4f8be 200
+[debug] [2025-06-05T13:41:29.959Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/task-manager-4f8be/sites/task-manager-4f8be {"name":"projects/task-manager-4f8be/sites/task-manager-4f8be","defaultUrl":"https://task-manager-4f8be.web.app","appId":"1:299806984749:web:98f92c253605d5107246a4","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.3.3
+
+[info]    - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully in 1000ms
+
+[info]    Linting and checking validity of types ...
+
+[info] 
+./src/app/page.js
+91:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/taskpage/IconList.js
+23:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/taskpage/Task.js
+98:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/taskpage/TypeTaskHeader.js
+135:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+146:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/7) ...
+
+[info]    Generating static pages (1/7) 
+
+[info]    Generating static pages (3/7) 
+
+[info]    Generating static pages (5/7) 
+ ✓ Generating static pages (7/7)
+
+[info]    Finalizing page optimization ...
+
+[info]    Collecting build traces ...
+
+[info] 
+
+[info] Route (app)                                 Size  First Load JS
+┌ ○ /                                    1.68 kB         241 kB
+├ ○ /_not-found                            977 B         102 kB
+├ ƒ /api/suggest                           136 B         101 kB
+└ ○ /taskpage                            39.9 kB         279 kB
++ First Load JS shared by all             101 kB
+  ├ chunks/4bd1b696-1f380737097c33f2.js  53.2 kB
+  ├ chunks/684-8b3740114d2ba82a.js       45.9 kB
+  └ other shared chunks (total)          1.96 kB
+
+
+[info] 
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • non-static component /api/suggest/route
+[info] 
+[debug] [2025-06-05T13:41:39.693Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:39.693Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:39.693Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/task-manager-4f8be/sites/task-manager-4f8be [none]
+[debug] [2025-06-05T13:41:40.325Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/task-manager-4f8be/sites/task-manager-4f8be 200
+[debug] [2025-06-05T13:41:40.325Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/task-manager-4f8be/sites/task-manager-4f8be {"name":"projects/task-manager-4f8be/sites/task-manager-4f8be","defaultUrl":"https://task-manager-4f8be.web.app","appId":"1:299806984749:web:98f92c253605d5107246a4","type":"DEFAULT_SITE"}
+[debug] [2025-06-05T13:41:46.457Z] [web frameworks] effective firebase.json:  {
+  "hosting": [
+    {
+      "source": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "frameworksBackend": {
+        "region": "us-east1"
+      },
+      "site": "task-manager-4f8be",
+      "rewrites": [
+        {
+          "source": "**",
+          "function": {
+            "functionId": "ssrtaskmanager4f8be",
+            "region": "us-east1",
+            "pinTag": true
+          }
+        }
+      ],
+      "redirects": [],
+      "headers": [
+        {
+          "source": "/favicon.ico",
+          "headers": [
+            {
+              "key": "cache-control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "content-type",
+              "value": "image/x-icon"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/favicon.ico/layout,_N_T_/favicon.ico/route,_N_T_/favicon.ico"
+            }
+          ]
+        },
+        {
+          "source": "/_not-found",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/_not-found/layout,_N_T_/_not-found/page,_N_T_/_not-found"
+            }
+          ]
+        },
+        {
+          "source": "/taskpage",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/taskpage/layout,_N_T_/taskpage/page,_N_T_/taskpage"
+            }
+          ]
+        },
+        {
+          "source": "**/*.[jt]s",
+          "headers": [
+            {
+              "key": "Set-Cookie",
+              "value": "__FIREBASE_DEFAULTS__=eyJjb25maWciOnsicHJvamVjdElkIjoidGFzay1tYW5hZ2VyLTRmOGJlIiwiYXBwSWQiOiIxOjI5OTgwNjk4NDc0OTp3ZWI6OThmOTJjMjUzNjA1ZDUxMDcyNDZhNCIsImRhdGFiYXNlVVJMIjoiaHR0cHM6Ly90YXNrLW1hbmFnZXItNGY4YmUtZGVmYXVsdC1ydGRiLmZpcmViYXNlaW8uY29tIiwic3RvcmFnZUJ1Y2tldCI6InRhc2stbWFuYWdlci00ZjhiZS5maXJlYmFzZXN0b3JhZ2UuYXBwIiwiYXBpS2V5IjoiQUl6YVN5Q1h3VmFHZWFMMTY1NkU5QTMwVVY5WFIyemszU0p3RFo0IiwiYXV0aERvbWFpbiI6InRhc2stbWFuYWdlci00ZjhiZS5maXJlYmFzZWFwcC5jb20iLCJtZXNzYWdpbmdTZW5kZXJJZCI6IjI5OTgwNjk4NDc0OSIsIm1lYXN1cmVtZW50SWQiOiJHLUg3V1dLUEZMRjcifSwiX2F1dGhUb2tlblN5bmNVUkwiOiIvX19zZXNzaW9uIn0; SameSite=Strict; Expires=2027-05-01T00:21:46.457Z; Path=/;"
+            }
+          ]
+        }
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "public": ".firebase/task-manager-4f8be/hosting",
+      "webFramework": "next_ssr"
+    }
+  ],
+  "functions": [
+    {
+      "source": "functions"
+    },
+    {
+      "source": ".firebase/task-manager-4f8be/functions",
+      "codebase": "firebase-frameworks-task-manager-4f8be"
+    }
+  ]
+}
+[debug] [2025-06-05T13:41:46.458Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-06-05T13:41:46.458Z] > authorizing via signed-in user (natalielim1906@gmail.com)
+[debug] [2025-06-05T13:41:46.459Z] [iam] checking project task-manager-4f8be for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-06-05T13:41:46.459Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:46.459Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:46.459Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions [none]
+[debug] [2025-06-05T13:41:46.459Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions x-goog-quota-user=projects/task-manager-4f8be
+[debug] [2025-06-05T13:41:46.459Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-06-05T13:41:46.718Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions 200
+[debug] [2025-06-05T13:41:46.718Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-06-05T13:41:46.719Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:46.719Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:46.719Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/task-manager-4f8be/locations/-/functions [none]
+[debug] [2025-06-05T13:41:47.230Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/task-manager-4f8be/locations/-/functions 200
+[debug] [2025-06-05T13:41:47.230Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/task-manager-4f8be/locations/-/functions {}
+[debug] [2025-06-05T13:41:47.230Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:47.230Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:47.230Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2025-06-05T13:41:47.802Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/-/functions 200
+[debug] [2025-06-05T13:41:47.803Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/-/functions {"functions":[{"name":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","buildConfig":{"build":"projects/299806984749/locations/us-east1/builds/232f8490-132f-416f-9cce-4e0e0d3c3826","runtime":"nodejs20","entryPoint":"ssrtaskmanager4f8be","source":{"storageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130309027880"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/task-manager-4f8be/locations/us-east1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130309027880"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/task-manager-4f8be/serviceAccounts/299806984749-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"task-manager-4f8be.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"task-manager-4f8be\",\"appId\":\"1:299806984749:web:98f92c253605d5107246a4\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\",\"apiKey\":\"AIzaSyCXwVaGeaL1656E9A30UV9XR2zk3SJwDZ4\",\"authDomain\":\"task-manager-4f8be.firebaseapp.com\",\"messagingSenderId\":\"299806984749\",\"measurementId\":\"G-H7WWKPFLF7\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"task-manager-4f8be\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\"}","GCLOUD_PROJECT":"task-manager-4f8be","EVENTARC_CLOUD_EVENT_SOURCE":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","FUNCTION_TARGET":"ssrtaskmanager4f8be","LOG_EXECUTION_ID":"true"},"maxInstanceCount":40,"ingressSettings":"ALLOW_ALL","uri":"https://ssrtaskmanager4f8be-iphwkgp6tq-ue.a.run.app","serviceAccountEmail":"299806984749-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrtaskmanager4f8be-00003-lug","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2025-06-05T13:34:05.478259740Z","labels":{"firebase-functions-hash":"2b5d31ea75ff071813b3376a4e32f9d9eff48595","deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-task-manager-4f8be"},"environment":"GEN_2","url":"https://us-east1-task-manager-4f8be.cloudfunctions.net/ssrtaskmanager4f8be","createTime":"2025-06-05T13:22:39.151976319Z"}]}
+[info] i  hosting: The following function(s) are pinned to site task-manager-4f8be and will be deployed as well: ssrtaskmanager4f8be 
+[info] 
+[info] === Deploying to 'task-manager-4f8be'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2025-06-05T13:41:47.804Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:47.804Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:47.804Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudresourcemanager.googleapis.com [none]
+[debug] [2025-06-05T13:41:47.804Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudresourcemanager.googleapis.com x-goog-quota-user=projects/task-manager-4f8be
+[debug] [2025-06-05T13:41:48.272Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudresourcemanager.googleapis.com 200
+[debug] [2025-06-05T13:41:48.273Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudresourcemanager.googleapis.com [omitted]
+[debug] [2025-06-05T13:41:48.273Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:48.273Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:48.273Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be [none]
+[debug] [2025-06-05T13:41:48.405Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be 200
+[debug] [2025-06-05T13:41:48.405Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be {"projectNumber":"299806984749","projectId":"task-manager-4f8be","lifecycleState":"ACTIVE","name":"task-manager","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-05-30T04:44:01.524302Z"}
+[info] i  functions: preparing codebase firebase-frameworks-task-manager-4f8be for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2025-06-05T13:41:48.406Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:48.406Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:48.406Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:48.406Z] Checked if tokens are valid: true, expires at: 1749132506483
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2025-06-05T13:41:48.406Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:48.406Z] Checked if tokens are valid: true, expires at: 1749132506483
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-06-05T13:41:48.406Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:48.406Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:48.406Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-06-05T13:41:48.406Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/task-manager-4f8be
+[debug] [2025-06-05T13:41:48.406Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-06-05T13:41:48.406Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/task-manager-4f8be
+[debug] [2025-06-05T13:41:48.407Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudbuild.googleapis.com [none]
+[debug] [2025-06-05T13:41:48.407Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudbuild.googleapis.com x-goog-quota-user=projects/task-manager-4f8be
+[debug] [2025-06-05T13:41:48.408Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/artifactregistry.googleapis.com [none]
+[debug] [2025-06-05T13:41:48.408Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/artifactregistry.googleapis.com x-goog-quota-user=projects/task-manager-4f8be
+[debug] [2025-06-05T13:41:48.583Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudfunctions.googleapis.com 200
+[debug] [2025-06-05T13:41:48.583Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2025-06-05T13:41:48.804Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/runtimeconfig.googleapis.com 200
+[debug] [2025-06-05T13:41:48.804Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-06-05T13:41:48.804Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudbuild.googleapis.com 200
+[debug] [2025-06-05T13:41:48.804Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2025-06-05T13:41:48.815Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/artifactregistry.googleapis.com 200
+[debug] [2025-06-05T13:41:48.815Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2025-06-05T13:41:48.815Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:48.815Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:48.815Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/task-manager-4f8be/adminSdkConfig [none]
+[debug] [2025-06-05T13:41:49.032Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/task-manager-4f8be/adminSdkConfig 200
+[debug] [2025-06-05T13:41:49.033Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/task-manager-4f8be/adminSdkConfig {"projectId":"task-manager-4f8be","databaseURL":"https://task-manager-4f8be-default-rtdb.firebaseio.com","storageBucket":"task-manager-4f8be.firebasestorage.app"}
+[debug] [2025-06-05T13:41:49.033Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:49.033Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:49.033Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/task-manager-4f8be/configs [none]
+[debug] [2025-06-05T13:41:49.264Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/task-manager-4f8be/configs 200
+[debug] [2025-06-05T13:41:49.264Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/task-manager-4f8be/configs {}
+[debug] [2025-06-05T13:41:49.265Z] Validating nodejs source
+[debug] [2025-06-05T13:41:49.648Z] > [functions] package.json contents: {
+  "name": "task-manager",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@hello-pangea/dnd": "^18.0.1",
+    "firebase": "^11.8.1",
+    "next": "15.3.3",
+    "openai": "^5.1.0",
+    "postcss": "^8.5.4",
+    "react": "^19.0.0",
+    "react-color": "^2.19.3",
+    "react-colorful": "^5.6.1",
+    "react-dom": "^19.0.0",
+    "react-draggable": "^4.4.6",
+    "reactjs-popup": "^2.0.6",
+    "firebase-frameworks": "^0.11.0",
+    "firebase-functions": "^6.0.1",
+    "firebase-admin": "^11.11.1"
+  },
+  "main": "server.js",
+  "engines": {
+    "node": "20"
+  }
+}
+[debug] [2025-06-05T13:41:49.649Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase firebase-frameworks-task-manager-4f8be to determine what to deploy 
+[debug] [2025-06-05T13:41:49.649Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-06-05T13:41:49.654Z] Found firebase-functions binary at '/Users/natalielim/Documents/summer2025projects/task-manager/.firebase/task-manager-4f8be/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8347
+
+[debug] [2025-06-05T13:41:49.853Z] Got response from /__/functions.yaml {"endpoints":{"ssrtaskmanager4f8be":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-east1"],"labels":{},"httpsTrigger":{},"entryPoint":"ssrtaskmanager4f8be"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2025-06-05T13:41:53.865Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:53.865Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:53.865Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/firebaseextensions.googleapis.com [none]
+[debug] [2025-06-05T13:41:53.865Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/firebaseextensions.googleapis.com x-goog-quota-user=projects/task-manager-4f8be
+[debug] [2025-06-05T13:41:54.271Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/firebaseextensions.googleapis.com 200
+[debug] [2025-06-05T13:41:54.271Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/firebaseextensions.googleapis.com [omitted]
+[info] ✔  extensions: required API firebaseextensions.googleapis.com is enabled 
+[debug] [2025-06-05T13:41:54.271Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-06-05T13:41:54.271Z] > authorizing via signed-in user (natalielim1906@gmail.com)
+[debug] [2025-06-05T13:41:54.271Z] [iam] checking project task-manager-4f8be for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2025-06-05T13:41:54.271Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:54.271Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:54.271Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions [none]
+[debug] [2025-06-05T13:41:54.271Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions x-goog-quota-user=projects/task-manager-4f8be
+[debug] [2025-06-05T13:41:54.271Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-06-05T13:41:54.513Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions 200
+[debug] [2025-06-05T13:41:54.513Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-06-05T13:41:54.513Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:54.513Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:54.513Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/task-manager-4f8be/instances pageSize=100&pageToken=
+[debug] [2025-06-05T13:41:55.030Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/task-manager-4f8be/instances 200
+[debug] [2025-06-05T13:41:55.030Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/task-manager-4f8be/instances {}
+[info] i  functions: Loaded environment variables from .env. 
+[info] i  functions: preparing .firebase/task-manager-4f8be/functions directory for uploading... 
+[info] i  functions: packaged /Users/natalielim/Documents/summer2025projects/task-manager/.firebase/task-manager-4f8be/functions (24.05 MB) for uploading 
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[debug] [2025-06-05T13:41:55.884Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:55.884Z] Checked if tokens are valid: true, expires at: 1749132506483
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[debug] [2025-06-05T13:41:55.884Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:55.884Z] Checked if tokens are valid: true, expires at: 1749132506483
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[debug] [2025-06-05T13:41:55.884Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:55.884Z] Checked if tokens are valid: true, expires at: 1749132506483
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[debug] [2025-06-05T13:41:55.884Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:55.884Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:55.884Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/run.googleapis.com [none]
+[debug] [2025-06-05T13:41:55.884Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/run.googleapis.com x-goog-quota-user=projects/299806984749
+[debug] [2025-06-05T13:41:55.884Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/eventarc.googleapis.com [none]
+[debug] [2025-06-05T13:41:55.884Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/eventarc.googleapis.com x-goog-quota-user=projects/299806984749
+[debug] [2025-06-05T13:41:55.885Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/pubsub.googleapis.com [none]
+[debug] [2025-06-05T13:41:55.885Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/pubsub.googleapis.com x-goog-quota-user=projects/299806984749
+[debug] [2025-06-05T13:41:55.885Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/storage.googleapis.com [none]
+[debug] [2025-06-05T13:41:55.885Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/storage.googleapis.com x-goog-quota-user=projects/299806984749
+[debug] [2025-06-05T13:41:56.056Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/run.googleapis.com 200
+[debug] [2025-06-05T13:41:56.056Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/run.googleapis.com [omitted]
+[info] ✔  functions: required API run.googleapis.com is enabled 
+[debug] [2025-06-05T13:41:56.284Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/eventarc.googleapis.com 200
+[debug] [2025-06-05T13:41:56.284Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/eventarc.googleapis.com [omitted]
+[info] ✔  functions: required API eventarc.googleapis.com is enabled 
+[debug] [2025-06-05T13:41:56.288Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/pubsub.googleapis.com 200
+[debug] [2025-06-05T13:41:56.288Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/pubsub.googleapis.com [omitted]
+[info] ✔  functions: required API pubsub.googleapis.com is enabled 
+[debug] [2025-06-05T13:41:56.292Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/storage.googleapis.com 200
+[debug] [2025-06-05T13:41:56.292Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/299806984749/services/storage.googleapis.com [omitted]
+[info] ✔  functions: required API storage.googleapis.com is enabled 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2025-06-05T13:41:56.293Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:56.293Z] Checked if tokens are valid: true, expires at: 1749132506483
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2025-06-05T13:41:56.293Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:56.293Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:56.293Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/299806984749/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-06-05T13:41:56.293Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/299806984749/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-06-05T13:41:56.474Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/299806984749/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2025-06-05T13:41:56.474Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/299806984749/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-299806984749@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"102242132968292919739"}}
+[debug] [2025-06-05T13:41:56.586Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/299806984749/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2025-06-05T13:41:56.586Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/299806984749/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-299806984749@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"104019477643644458423"}}
+[debug] [2025-06-05T13:41:56.587Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:56.587Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:56.587Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudresourcemanager.googleapis.com [none]
+[debug] [2025-06-05T13:41:56.587Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudresourcemanager.googleapis.com x-goog-quota-user=projects/task-manager-4f8be
+[debug] [2025-06-05T13:41:56.768Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudresourcemanager.googleapis.com 200
+[debug] [2025-06-05T13:41:56.768Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/task-manager-4f8be/services/cloudresourcemanager.googleapis.com [omitted]
+[debug] [2025-06-05T13:41:56.768Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:56.768Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:56.768Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be [none]
+[debug] [2025-06-05T13:41:56.889Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be 200
+[debug] [2025-06-05T13:41:56.889Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/task-manager-4f8be {"projectNumber":"299806984749","projectId":"task-manager-4f8be","lifecycleState":"ACTIVE","name":"task-manager","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-05-30T04:44:01.524302Z"}
+[debug] [2025-06-05T13:41:56.890Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:56.890Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:56.890Z] >>> [apiv2][query] GET https://compute.googleapis.com/compute/v1/projects/299806984749 [none]
+[debug] [2025-06-05T13:41:57.074Z] <<< [apiv2][status] GET https://compute.googleapis.com/compute/v1/projects/299806984749 403
+[debug] [2025-06-05T13:41:57.074Z] <<< [apiv2][body] GET https://compute.googleapis.com/compute/v1/projects/299806984749 {"error":{"code":403,"message":"Compute Engine API has not been used in project 299806984749 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","errors":[{"message":"Compute Engine API has not been used in project 299806984749 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","domain":"usageLimits","reason":"accessNotConfigured","extendedHelp":"https://console.developers.google.com"}],"status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"serviceTitle":"Compute Engine API","activationUrl":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749","containerInfo":"299806984749","service":"compute.googleapis.com","consumer":"projects/299806984749"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Compute Engine API has not been used in project 299806984749 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749"}]}]}}
+[debug] [2025-06-05T13:41:57.074Z] unable to look up default compute service account. Falling back to 299806984749-compute@developer.gserviceaccount.com. Error: {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":403,"message":"Compute Engine API has not been used in project 299806984749 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","errors":[{"message":"Compute Engine API has not been used in project 299806984749 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","domain":"usageLimits","reason":"accessNotConfigured","extendedHelp":"https://console.developers.google.com"}],"status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"serviceTitle":"Compute Engine API","activationUrl":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749","containerInfo":"299806984749","service":"compute.googleapis.com","consumer":"projects/299806984749"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"Compute Engine API has not been used in project 299806984749 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Google developers console API activation","url":"https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749"}]}]}},"response":{"statusCode":403}},"exit":1,"message":"Request to https://compute.googleapis.com/compute/v1/projects/299806984749 had HTTP Error: 403, Compute Engine API has not been used in project 299806984749 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/compute.googleapis.com/overview?project=299806984749 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.","status":403}
+[debug] [2025-06-05T13:41:57.077Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:57.077Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:57.077Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/task-manager-4f8be/versions [none]
+[debug] [2025-06-05T13:41:57.077Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/task-manager-4f8be/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2025-06-05T13:41:58.263Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/task-manager-4f8be/versions 200
+[debug] [2025-06-05T13:41:58.264Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/task-manager-4f8be/versions {"name":"projects/299806984749/sites/task-manager-4f8be/versions/c26a476071ec4c64","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2025-06-05T13:41:58.265Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:58.265Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:58.265Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/task-manager-4f8be/billingInfo [none]
+[debug] [2025-06-05T13:41:58.511Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/task-manager-4f8be/billingInfo 200
+[debug] [2025-06-05T13:41:58.511Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/task-manager-4f8be/billingInfo {"name":"projects/task-manager-4f8be/billingInfo","projectId":"task-manager-4f8be","billingAccountName":"billingAccounts/01BA0D-2A1ABA-C590B2","billingEnabled":true}
+[debug] [2025-06-05T13:41:58.514Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:58.514Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:41:58.514Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/functions:generateUploadUrl [none]
+[debug] [2025-06-05T13:41:59.085Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/functions:generateUploadUrl 200
+[debug] [2025-06-05T13:41:59.085Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-299806984749.us-east1.cloudfunctions.appspot.com/8bc35abe-dbef-4540-8f8a-b42ddb82cae4.zip?GoogleAccessId=service-299806984749@gcf-admin-robot.iam.gserviceaccount.com&Expires=1749132719&Signature=f5lUmSF%2Bk0euGLqXcMXiElIGrn9th27jFMYGF1v76L3QtUL%2BGyudas3n7MWfOLojQWhl9vEBAsUViZhVt2rno0gwwg3CUkTXEAanrCNoNPxd4ZjHv5NdsBuGsOdnqSEYUTD33eRuQPn%2FKFZwmXyTWZo%2Fss8MWn7AD80LKSTI9%2BXCr5vYy%2BHgN4skYcX9%2FRUMWpxxji3rAX%2B5W9chtXaiapHwFs2p2KDcNqLdsfVCk2N49rHnLaZw5fLzLA%2FeBepShjMVSKJ8hupus2avIjYzs6NBit9o6mRAfekNeQBm91wTGakVYaeZi5jk2ZL%2F4pZjjQQzalsc3CqHLmFFuWfYRg%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-299806984749.us-east1.cloudfunctions.appspot.com","object":"8bc35abe-dbef-4540-8f8a-b42ddb82cae4.zip"}}
+[debug] [2025-06-05T13:41:59.086Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-299806984749.us-east1.cloudfunctions.appspot.com/8bc35abe-dbef-4540-8f8a-b42ddb82cae4.zip GoogleAccessId=service-299806984749%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1749132719&Signature=f5lUmSF%2Bk0euGLqXcMXiElIGrn9th27jFMYGF1v76L3QtUL%2BGyudas3n7MWfOLojQWhl9vEBAsUViZhVt2rno0gwwg3CUkTXEAanrCNoNPxd4ZjHv5NdsBuGsOdnqSEYUTD33eRuQPn%2FKFZwmXyTWZo%2Fss8MWn7AD80LKSTI9%2BXCr5vYy%2BHgN4skYcX9%2FRUMWpxxji3rAX%2B5W9chtXaiapHwFs2p2KDcNqLdsfVCk2N49rHnLaZw5fLzLA%2FeBepShjMVSKJ8hupus2avIjYzs6NBit9o6mRAfekNeQBm91wTGakVYaeZi5jk2ZL%2F4pZjjQQzalsc3CqHLmFFuWfYRg%3D%3D
+[debug] [2025-06-05T13:41:59.086Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-299806984749.us-east1.cloudfunctions.appspot.com/8bc35abe-dbef-4540-8f8a-b42ddb82cae4.zip [stream]
+[debug] [2025-06-05T13:42:09.151Z] <<< [apiv2][status] PUT https://storage.googleapis.com/gcf-v2-uploads-299806984749.us-east1.cloudfunctions.appspot.com/8bc35abe-dbef-4540-8f8a-b42ddb82cae4.zip 200
+[debug] [2025-06-05T13:42:09.154Z] <<< [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-299806984749.us-east1.cloudfunctions.appspot.com/8bc35abe-dbef-4540-8f8a-b42ddb82cae4.zip [omitted]
+[info] ✔  functions: .firebase/task-manager-4f8be/functions folder uploaded successfully 
+[info] i  hosting[task-manager-4f8be]: beginning deploy... 
+[info] i  hosting[task-manager-4f8be]: found 48 files in .firebase/task-manager-4f8be/hosting 
+[debug] [2025-06-05T13:42:09.184Z] [hosting] uploading with 200 concurrency
+[debug] [2025-06-05T13:42:09.263Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:09.263Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:09.265Z] [hosting] hash cache [LmZpcmViYXNlL3Rhc2stbWFuYWdlci00ZjhiZS9ob3N0aW5n] stored for 48 files
+[debug] [2025-06-05T13:42:09.265Z] [hosting][hash queue][FINAL] {"max":71,"min":26,"avg":37.5625,"active":0,"complete":48,"success":48,"errored":0,"retried":0,"total":48,"elapsed":78}
+[debug] [2025-06-05T13:42:09.265Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/299806984749/sites/task-manager-4f8be/versions/c26a476071ec4c64:populateFiles [none]
+[debug] [2025-06-05T13:42:09.265Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/299806984749/sites/task-manager-4f8be/versions/c26a476071ec4c64:populateFiles {"files":{"/globe.svg":"914fe1f576f68698d9e329ea8ec6c542d8d5f150af08f1a360d188fed7597c23","/window.svg":"bf07bc7ddc1ae03e7936a9347de10e85cf9a0e51f99bd8293b2a8eeca6463b49","/index.html":"87951693ffcbc3901fc57e532b6d1fb2ca39a6fc054a3da73a34f4421dc89661","/next.svg":"7b16665552cb47db34db342505d6d340caaf5813ca2cba1df3536ed67ea33f64","/file.svg":"cb6477bad43c44ba222b8cddfa7e4fe646b19ec7449646e8c2a426354faa630e","/404.html":"ddf7b85ba7eed7d51f563d8466665e234b1afa1699e7d96374c6b07f76891aeb","/assets/plus-square.svg":"653808ded4c0732437890ee04c85c9353fb026f1cabd5cd9034266ff14928720","/assets/pencil.svg":"5ea32417d0e39f30a5feee1b38de147408721a6d48d401be00df488f679879c0","/assets/Sliders.svg":"5066dbc72184ea3ad2f915873e0b53098e291943864554d3a34dfb8b51da7ee7","/assets/Settings.svg":"5e3d0d24ea6480d187c595afa33bed0b21bcea3754d070607212a5f5dfe14130","/taskpage.html":"a32072a7fb13c83a80948e813f8b999bf7e9a67deeaaf3f3d8c6b025a4576de4","/assets/logo.svg":"e17d155981166fa98022bb29a0d6290021a52c3d023c3add0fcbbb4bffd064e1","/assets/Key.svg":"87183994f3739dafbdaf26cab0470242d086756613977c04b7f4f74bbd4ea5f8","/assets/Plus.svg":"14a5b013c1b9448fb5120b3e60e756c94f10411c5b8b34af0c29cde38e99d087","/_next/static/media/8d697b304b401681-s.woff2":"cccaf7bf72117d313a9afc3a475289a19b9fcd0f735c9b2e4ded6cba08a517a0","/_next/static/media/ba015fad6dcf6784-s.woff2":"2b719e95831c9d92a31ebbe512bbd87cc76501765edb9b6ca4734cc5a2becb94","/_next/static/media/9610d9e46709d722-s.woff2":"7cdf2599fa32a0a3edc7d4126b5c8f5233d62799ddb46552ca6890389ba7d9c1","/_next/static/media/e1aab0933260df4d-s.woff2":"d8847af9d03b76aee33e60eb77c1ae894e2b0302e4512c6805db2db4e2b77a8b","/_next/static/media/747892c23ea88013-s.woff2":"396955195c54144bce504511dd89d0c74a3f6b453d73823073be1a2cbe00e6de","/_next/static/css/474bdb229f9c184a.css":"ed79d506074293c2b62fde1a84ce4cce719426f7d31fe27c152ddc5b37847814","/_next/static/css/2a4086ff42a70633.css":"8e453f9d91c1863c4cff65a8177e5ed14d4381a4b37f8ea222cca5aef1ccc3df","/_next/static/chunks/main-app-2f6200bfba16e2ab.js":"f95fd0a086e7979e6ecd9119eb9d3a2c431a7f8d75ce1eff78d25364eee682aa","/_next/static/chunks/webpack-476d08645110c2c7.js":"299e072f1fe46e686648ed6e77a1a7a5f8c77c606ddcfad8840ae0f47f84fe50","/vercel.svg":"ffb3d6634c37da9451d60557ed0e6e513e2889672e0bf202d2558062062a048a","/favicon.ico":"8b9c4dce3353938d2027ab21f0489807587db05d65ef390a6947d32312e501a0","/_next/static/chunks/88-8944ee4d536014f6.js":"87d2ff9e5336137bb9a1ee277fbee1418f9891c839d4678a8cf50a7ab2cfa3ef","/_next/static/chunks/pages/_app-da15c11dea942c36.js":"f21d30b6e46d7c7b1115918b2634c1210a8404ca753d2c6ce8f31d81808f885b","/_next/static/chunks/pages/_error-cc3f077a18ea1793.js":"564abeedceeec08a8298e969e72cd01d0de2dcea054f3a2c43c9cba786ec9d6b","/_next/static/chunks/app/layout-26849caf1045f880.js":"838c9994825c6e27be15fd511ae73b3983929e993f3f17e0b21be9dd2d2f4fd8","/_next/static/chunks/app/page-2e4e8eb41713b7c1.js":"8e597cd3282e3914b26ab5b58ebbd8618a0405c2d721326d31fcbfcd6ce4f2cf","/_next/static/chunks/app/api/suggest/route-02046de6820d7372.js":"8349d795be7afa9b701150c91305e1c57274bff99351fb60835f75e35ebc7176","/_next/static/_xRsi-i1l0VTPgsmtzpp_/_buildManifest.js":"a41569edd30ff28545bad5e2763771339c04d19702fc3d35646a68981aac911a","/_next/static/chunks/app/taskpage/page-a14229d039399ea4.js":"52e84b9d5452c21bdf0ea8770ab0a20d642b83511c72805df5be7c84e57e2495","/_next/static/_xRsi-i1l0VTPgsmtzpp_/_ssgManifest.js":"02dbc1aeab6ef0a6ff2ff9a1643158cf9bb38929945eaa343a3627dee9ba6778","/_next/static/chunks/app/_not-found/page-f76237d424d3e14a.js":"af3cde2f24378e907a1eb77aec21605f437728d1080179a1915a71e81f4d8088","/_next/static/media/b7387a63dd068245-s.woff2":"c7579172083e56289416575e67aab7e8792bda4b18e5f491667150d1179454e0","/_next/static/media/7cba1811e3c25a15-s.p.woff2":"6a1d6c8f51ec6654b7b0ccbc4be5f58cf754b769bdd3a126f249ab0cf7b41ec6","/_next/static/media/569ce4b8f30dc480-s.p.woff2":"bc42f82a40910fe1ca4f24b681416db7137eedc966a76f190ab676ffdce95a72","/_next/static/media/93f479601ee12b01-s.p.woff2":"a259f1cc268ca344efc6262b4995c1c232308fca60ea61efec48fcb2d49b4f03","/_next/static/chunks/f01af2bd-0ae21e09ecf23921.js":"9662991fc5437f40603766ef53b2b363beda5d356778a7f7d4765901f66cb368","/_next/static/chunks/602dbae6-82a81094dbfa9f90.js":"a2bbceccce7f99457ab25cbbd9c89cedfd0bd26812dd6058cf7706986f4e6bc3","/_next/static/chunks/main-d0dcef2745bf0700.js":"dd9036158a98f725536c4d34ef0ec884f154a7a62dd4a18387de13bbac6b32d6","/_next/static/chunks/polyfills-42372ed130431b0a.js":"67dee1c02c6a6700d63b5c1898cf2df618101a68a395db469192763d24925a23","/_next/static/chunks/600-1e5dba9446116fb1.js":"9e53fed18ec6e3ffe4e81812d51ab5dc4c372800077217c74da659e937f3b78d","/_next/static/chunks/684-8b3740114d2ba82a.js":"ac85857b05d05f4fb87b7b60068e23b39cedc0be93a09c86a6c4a24e6c430ed7","/_next/static/chunks/framework-f593a28cde54158e.js":"6078b9626eee9b3d8c1ce2d6608d1fe6180ba220eecf1d77db3bba24eccb055d","/_next/static/chunks/4bd1b696-1f380737097c33f2.js":"b81be9d369b3fcdae2272773efa23f66d757cc7507784d75d1bbafa5bcd3dfa3","/_next/static/chunks/bc9e92e6-c3584ece76faaea3.js":"1188555e95ab031664417ddae93c41d3170ad11a426362406321efdb86f626b6"}}
+[debug] [2025-06-05T13:42:09.948Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/299806984749/sites/task-manager-4f8be/versions/c26a476071ec4c64:populateFiles 200
+[debug] [2025-06-05T13:42:09.949Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/299806984749/sites/task-manager-4f8be/versions/c26a476071ec4c64:populateFiles {"uploadRequiredHashes":["299e072f1fe46e686648ed6e77a1a7a5f8c77c606ddcfad8840ae0f47f84fe50","87951693ffcbc3901fc57e532b6d1fb2ca39a6fc054a3da73a34f4421dc89661","ddf7b85ba7eed7d51f563d8466665e234b1afa1699e7d96374c6b07f76891aeb","a32072a7fb13c83a80948e813f8b999bf7e9a67deeaaf3f3d8c6b025a4576de4"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files"}
+[debug] [2025-06-05T13:42:09.950Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:09.950Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:09.950Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:09.950Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:09.951Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:09.951Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:09.951Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:09.951Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:09.951Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/299e072f1fe46e686648ed6e77a1a7a5f8c77c606ddcfad8840ae0f47f84fe50 [none]
+[debug] [2025-06-05T13:42:09.951Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/299e072f1fe46e686648ed6e77a1a7a5f8c77c606ddcfad8840ae0f47f84fe50 [stream]
+[debug] [2025-06-05T13:42:09.953Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/87951693ffcbc3901fc57e532b6d1fb2ca39a6fc054a3da73a34f4421dc89661 [none]
+[debug] [2025-06-05T13:42:09.953Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/87951693ffcbc3901fc57e532b6d1fb2ca39a6fc054a3da73a34f4421dc89661 [stream]
+[debug] [2025-06-05T13:42:09.954Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/ddf7b85ba7eed7d51f563d8466665e234b1afa1699e7d96374c6b07f76891aeb [none]
+[debug] [2025-06-05T13:42:09.954Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/ddf7b85ba7eed7d51f563d8466665e234b1afa1699e7d96374c6b07f76891aeb [stream]
+[debug] [2025-06-05T13:42:09.956Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/a32072a7fb13c83a80948e813f8b999bf7e9a67deeaaf3f3d8c6b025a4576de4 [none]
+[debug] [2025-06-05T13:42:09.956Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/a32072a7fb13c83a80948e813f8b999bf7e9a67deeaaf3f3d8c6b025a4576de4 [stream]
+[debug] [2025-06-05T13:42:09.957Z] [hosting][populate queue][FINAL] {"max":688,"min":688,"avg":688,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":694}
+[debug] [2025-06-05T13:42:09.957Z] [hosting] uploads queued: 4
+[debug] [2025-06-05T13:42:10.588Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/ddf7b85ba7eed7d51f563d8466665e234b1afa1699e7d96374c6b07f76891aeb 200
+[debug] [2025-06-05T13:42:10.589Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/ddf7b85ba7eed7d51f563d8466665e234b1afa1699e7d96374c6b07f76891aeb [stream]
+[debug] [2025-06-05T13:42:10.693Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/a32072a7fb13c83a80948e813f8b999bf7e9a67deeaaf3f3d8c6b025a4576de4 200
+[debug] [2025-06-05T13:42:10.693Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/a32072a7fb13c83a80948e813f8b999bf7e9a67deeaaf3f3d8c6b025a4576de4 [stream]
+[debug] [2025-06-05T13:42:10.851Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/87951693ffcbc3901fc57e532b6d1fb2ca39a6fc054a3da73a34f4421dc89661 200
+[debug] [2025-06-05T13:42:10.851Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/87951693ffcbc3901fc57e532b6d1fb2ca39a6fc054a3da73a34f4421dc89661 [stream]
+[debug] [2025-06-05T13:42:11.058Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/299e072f1fe46e686648ed6e77a1a7a5f8c77c606ddcfad8840ae0f47f84fe50 200
+[debug] [2025-06-05T13:42:11.059Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/task-manager-4f8be/versions/c26a476071ec4c64/files/299e072f1fe46e686648ed6e77a1a7a5f8c77c606ddcfad8840ae0f47f84fe50 [stream]
+[debug] [2025-06-05T13:42:11.059Z] [hosting][upload queue][FINAL] {"max":1110,"min":639,"avg":848,"active":0,"complete":4,"success":4,"errored":0,"retried":0,"total":4,"elapsed":1110}
+[info] ✔  hosting[task-manager-4f8be]: file upload complete 
+[debug] [2025-06-05T13:42:11.061Z] [hosting] deploy completed after 1903ms
+[info] i  functions: updating Node.js 20 (2nd Gen) function firebase-frameworks-task-manager-4f8be:ssrtaskmanager4f8be(us-east1)... 
+[debug] [2025-06-05T13:42:11.065Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:11.065Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:11.066Z] >>> [apiv2][query] PATCH https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be updateMask=name%2CbuildConfig.runtime%2CbuildConfig.entryPoint%2CbuildConfig.source.storageSource.bucket%2CbuildConfig.source.storageSource.object%2CbuildConfig.environmentVariables%2CbuildConfig.sourceToken%2CserviceConfig.environmentVariables%2CserviceConfig.ingressSettings%2CserviceConfig.timeoutSeconds%2CserviceConfig.serviceAccountEmail%2CserviceConfig.availableMemory%2CserviceConfig.minInstanceCount%2CserviceConfig.maxInstanceCount%2CserviceConfig.maxInstanceRequestConcurrency%2CserviceConfig.availableCpu%2CserviceConfig.vpcConnector%2CserviceConfig.vpcConnectorEgressSettings%2Clabels
+[debug] [2025-06-05T13:42:11.066Z] >>> [apiv2][body] PATCH https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be {"name":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","buildConfig":{"runtime":"nodejs20","entryPoint":"ssrtaskmanager4f8be","source":{"storageSource":{"bucket":"gcf-v2-uploads-299806984749.us-east1.cloudfunctions.appspot.com","object":"8bc35abe-dbef-4540-8f8a-b42ddb82cae4.zip"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"environmentVariables":{"VERCEL_URL":"task-manager-4f8be.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"task-manager-4f8be\",\"appId\":\"1:299806984749:web:98f92c253605d5107246a4\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\",\"apiKey\":\"AIzaSyCXwVaGeaL1656E9A30UV9XR2zk3SJwDZ4\",\"authDomain\":\"task-manager-4f8be.firebaseapp.com\",\"messagingSenderId\":\"299806984749\",\"measurementId\":\"G-H7WWKPFLF7\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"task-manager-4f8be\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\"}","GCLOUD_PROJECT":"task-manager-4f8be","EVENTARC_CLOUD_EVENT_SOURCE":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","FUNCTION_TARGET":"ssrtaskmanager4f8be","LOG_EXECUTION_ID":"true"},"ingressSettings":null,"timeoutSeconds":null,"serviceAccountEmail":null,"availableMemory":"256Mi","minInstanceCount":null,"maxInstanceCount":null,"maxInstanceRequestConcurrency":80,"availableCpu":"1","vpcConnector":null,"vpcConnectorEgressSettings":null},"labels":{"deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-task-manager-4f8be","firebase-functions-hash":"e040a507c6eda643f190577a61a790736ad35cee"}}
+[debug] [2025-06-05T13:42:12.357Z] <<< [apiv2][status] PATCH https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be 200
+[debug] [2025-06-05T13:42:12.358Z] <<< [apiv2][body] PATCH https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be {"name":"projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-06-05T13:42:12.365048464Z","target":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","verb":"update","cancelRequested":false,"apiVersion":"v2"},"done":false}
+[debug] [2025-06-05T13:42:12.359Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:12.359Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:12.360Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 [none]
+[debug] [2025-06-05T13:42:12.835Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 200
+[debug] [2025-06-05T13:42:12.835Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 {"name":"projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-06-05T13:42:12.365048464Z","target":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","verb":"update","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","buildConfig":{"runtime":"nodejs20","entryPoint":"ssrtaskmanager4f8be","source":{"storageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130932318531"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/task-manager-4f8be/locations/us-east1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130309027880"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/task-manager-4f8be/serviceAccounts/299806984749-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"task-manager-4f8be.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"task-manager-4f8be\",\"appId\":\"1:299806984749:web:98f92c253605d5107246a4\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\",\"apiKey\":\"AIzaSyCXwVaGeaL1656E9A30UV9XR2zk3SJwDZ4\",\"authDomain\":\"task-manager-4f8be.firebaseapp.com\",\"messagingSenderId\":\"299806984749\",\"measurementId\":\"G-H7WWKPFLF7\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"task-manager-4f8be\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\"}","GCLOUD_PROJECT":"task-manager-4f8be","EVENTARC_CLOUD_EVENT_SOURCE":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","FUNCTION_TARGET":"ssrtaskmanager4f8be","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","uri":"https://ssrtaskmanager4f8be-iphwkgp6tq-ue.a.run.app","serviceAccountEmail":"299806984749-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrtaskmanager4f8be-00003-lug","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","labels":{"deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-task-manager-4f8be","firebase-functions-hash":"e040a507c6eda643f190577a61a790736ad35cee"},"environment":"GEN_2","url":"https://us-east1-task-manager-4f8be.cloudfunctions.net/ssrtaskmanager4f8be"},"stages":[{"name":"BUILD","state":"NOT_STARTED"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"UPDATE_FUNCTION"},"done":false}
+[debug] [2025-06-05T13:42:13.337Z] [update-firebase-frameworks-task-manager-4f8be-us-east1-ssrtaskmanager4f8be] Retrying task index 0
+[debug] [2025-06-05T13:42:13.338Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:13.338Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:13.338Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 [none]
+[debug] [2025-06-05T13:42:13.772Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 200
+[debug] [2025-06-05T13:42:13.773Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 {"name":"projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-06-05T13:42:12.365048464Z","target":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","verb":"update","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","buildConfig":{"runtime":"nodejs20","entryPoint":"ssrtaskmanager4f8be","source":{"storageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130932318531"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/task-manager-4f8be/locations/us-east1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130309027880"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/task-manager-4f8be/serviceAccounts/299806984749-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"task-manager-4f8be.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"task-manager-4f8be\",\"appId\":\"1:299806984749:web:98f92c253605d5107246a4\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\",\"apiKey\":\"AIzaSyCXwVaGeaL1656E9A30UV9XR2zk3SJwDZ4\",\"authDomain\":\"task-manager-4f8be.firebaseapp.com\",\"messagingSenderId\":\"299806984749\",\"measurementId\":\"G-H7WWKPFLF7\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"task-manager-4f8be\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\"}","GCLOUD_PROJECT":"task-manager-4f8be","EVENTARC_CLOUD_EVENT_SOURCE":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","FUNCTION_TARGET":"ssrtaskmanager4f8be","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","uri":"https://ssrtaskmanager4f8be-iphwkgp6tq-ue.a.run.app","serviceAccountEmail":"299806984749-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrtaskmanager4f8be-00003-lug","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","labels":{"deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-task-manager-4f8be","firebase-functions-hash":"e040a507c6eda643f190577a61a790736ad35cee"},"environment":"GEN_2","url":"https://us-east1-task-manager-4f8be.cloudfunctions.net/ssrtaskmanager4f8be"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/299806984749/locations/us-east1/builds/c12536a8-f9f7-410d-a64a-c912b438ec3e","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-east1/c12536a8-f9f7-410d-a64a-c912b438ec3e?project=299806984749"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"UPDATE_FUNCTION","buildName":"projects/299806984749/locations/us-east1/builds/c12536a8-f9f7-410d-a64a-c912b438ec3e"},"done":false}
+[debug] [2025-06-05T13:42:14.774Z] [update-firebase-frameworks-task-manager-4f8be-us-east1-ssrtaskmanager4f8be] Retrying task index 0
+[debug] [2025-06-05T13:42:14.775Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:14.775Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:14.775Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 [none]
+[debug] [2025-06-05T13:42:15.212Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 200
+[debug] [2025-06-05T13:42:15.212Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 {"name":"projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-06-05T13:42:12.365048464Z","target":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","verb":"update","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","buildConfig":{"runtime":"nodejs20","entryPoint":"ssrtaskmanager4f8be","source":{"storageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130932318531"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/task-manager-4f8be/locations/us-east1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130309027880"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/task-manager-4f8be/serviceAccounts/299806984749-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"task-manager-4f8be.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"task-manager-4f8be\",\"appId\":\"1:299806984749:web:98f92c253605d5107246a4\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\",\"apiKey\":\"AIzaSyCXwVaGeaL1656E9A30UV9XR2zk3SJwDZ4\",\"authDomain\":\"task-manager-4f8be.firebaseapp.com\",\"messagingSenderId\":\"299806984749\",\"measurementId\":\"G-H7WWKPFLF7\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"task-manager-4f8be\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\"}","GCLOUD_PROJECT":"task-manager-4f8be","EVENTARC_CLOUD_EVENT_SOURCE":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","FUNCTION_TARGET":"ssrtaskmanager4f8be","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","uri":"https://ssrtaskmanager4f8be-iphwkgp6tq-ue.a.run.app","serviceAccountEmail":"299806984749-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrtaskmanager4f8be-00003-lug","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","labels":{"deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-task-manager-4f8be","firebase-functions-hash":"e040a507c6eda643f190577a61a790736ad35cee"},"environment":"GEN_2","url":"https://us-east1-task-manager-4f8be.cloudfunctions.net/ssrtaskmanager4f8be"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/299806984749/locations/us-east1/builds/c12536a8-f9f7-410d-a64a-c912b438ec3e","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-east1/c12536a8-f9f7-410d-a64a-c912b438ec3e?project=299806984749"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"UPDATE_FUNCTION","buildName":"projects/299806984749/locations/us-east1/builds/c12536a8-f9f7-410d-a64a-c912b438ec3e"},"done":false}
+[debug] [2025-06-05T13:42:17.214Z] [update-firebase-frameworks-task-manager-4f8be-us-east1-ssrtaskmanager4f8be] Retrying task index 0
+[debug] [2025-06-05T13:42:17.214Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:17.214Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:17.215Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 [none]
+[debug] [2025-06-05T13:42:17.643Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 200
+[debug] [2025-06-05T13:42:17.643Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 {"name":"projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-06-05T13:42:12.365048464Z","target":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","verb":"update","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","buildConfig":{"runtime":"nodejs20","entryPoint":"ssrtaskmanager4f8be","source":{"storageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130932318531"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/task-manager-4f8be/locations/us-east1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130309027880"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/task-manager-4f8be/serviceAccounts/299806984749-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"task-manager-4f8be.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"task-manager-4f8be\",\"appId\":\"1:299806984749:web:98f92c253605d5107246a4\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\",\"apiKey\":\"AIzaSyCXwVaGeaL1656E9A30UV9XR2zk3SJwDZ4\",\"authDomain\":\"task-manager-4f8be.firebaseapp.com\",\"messagingSenderId\":\"299806984749\",\"measurementId\":\"G-H7WWKPFLF7\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"task-manager-4f8be\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\"}","GCLOUD_PROJECT":"task-manager-4f8be","EVENTARC_CLOUD_EVENT_SOURCE":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","FUNCTION_TARGET":"ssrtaskmanager4f8be","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","uri":"https://ssrtaskmanager4f8be-iphwkgp6tq-ue.a.run.app","serviceAccountEmail":"299806984749-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrtaskmanager4f8be-00003-lug","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","labels":{"deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-task-manager-4f8be","firebase-functions-hash":"e040a507c6eda643f190577a61a790736ad35cee"},"environment":"GEN_2","url":"https://us-east1-task-manager-4f8be.cloudfunctions.net/ssrtaskmanager4f8be"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/299806984749/locations/us-east1/builds/c12536a8-f9f7-410d-a64a-c912b438ec3e","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-east1/c12536a8-f9f7-410d-a64a-c912b438ec3e?project=299806984749"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"UPDATE_FUNCTION","buildName":"projects/299806984749/locations/us-east1/builds/c12536a8-f9f7-410d-a64a-c912b438ec3e"},"done":false}
+[debug] [2025-06-05T13:42:21.645Z] [update-firebase-frameworks-task-manager-4f8be-us-east1-ssrtaskmanager4f8be] Retrying task index 0
+[debug] [2025-06-05T13:42:21.646Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:21.646Z] Checked if tokens are valid: true, expires at: 1749132506483
+[debug] [2025-06-05T13:42:21.646Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 [none]
+[debug] [2025-06-05T13:42:22.186Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 200
+[debug] [2025-06-05T13:42:22.187Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383 {"name":"projects/task-manager-4f8be/locations/us-east1/operations/operation-1749130931600-636d347d7fcee-3ffcaed6-0277e383","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-06-05T13:42:12.365048464Z","target":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","verb":"update","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/task-manager-4f8be/locations/us-east1/functions/ssrtaskmanager4f8be","buildConfig":{"runtime":"nodejs20","entryPoint":"ssrtaskmanager4f8be","source":{"storageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130932318531"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/task-manager-4f8be/locations/us-east1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-299806984749-us-east1","object":"ssrtaskmanager4f8be/function-source.zip","generation":"1749130309027880"}},"dockerRegistry":"ARTIFACT_REGISTRY","serviceAccount":"projects/task-manager-4f8be/serviceAccounts/299806984749-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"task-manager-4f8be.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"task-manager-4f8be\",\"appId\":\"1:299806984749:web:98f92c253605d5107246a4\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\",\"apiKey\":\"AIzaSyCXwVaGeaL1656E9A30UV9XR2zk3SJwDZ4\",\"authDomain\":\"task-manager-4f8be.firebaseapp.com\",\"messagingSenderId\":\"299806984749\",\"measurementId\":\"G-H7WWKPFLF7\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"task-manager-4f8be\",\"databaseURL\":\"https://task-manager-4f8be-default-rtdb.firebaseio.com\",\"storageBucket\":\"task-manager-4f8be.firebasestorage.app\"}","GCLOUD_PROJECT":"task-manager-4f8be","EVENTARC_CLOUD_EVENT_SOURCE":"projects/task-manager-4f8be/locations/us-east1/services/ssrtaskmanager4f8be","FUNCTION_TARGET":"ssrtaskmanager4f8be","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","uri":"https://ssrtaskmanager4f8be-iphwkgp6tq-ue.a.run.app","serviceAccountEmail":"299806984749-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrtaskmanager4f8be-00003-lug","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","labels":{"deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-task-manager-4f8be","firebase-functions-hash":"e040a507c6eda643f190577a61a790736ad35cee"},"environment":"GEN_2","url":"https://us-east1-task-manager-4f8be.cloudfunctions.net/ssrtaskmanager4f8be"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/299806984749/locations/us-east1/builds/c12536a8-f9f7-410d-a64a-c912b438ec3e","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-east1/c12536a8-f9f7-410d-a64a-c912b438ec3e?project=299806984749"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"UPDATE_FUNCTION","buildName":"projects/299806984749/locations/us-east1/builds/c12536a8-f9f7-410d-a64a-c912b438ec3e"},"done":false}
