@@ -39,7 +39,7 @@ export default function Task({ description, column, index }) {
       const res = await fetch("/api/suggest", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: `Give suggestions for: ${taskName} and how much time it should take` }),
+        body: JSON.stringify({ prompt: `Give suggestions for: ${taskName}` }),
       });
       const data = await res.json();
       return data.result;
@@ -132,7 +132,7 @@ export default function Task({ description, column, index }) {
 
 
       <input
-        className={`${spaceGrotesk.className} text-sm bg-transparent outline-none flex-grow`}
+        className={`${spaceGrotesk.className} text-sm w-full bg-transparent outline-none flex-grow`}
         value={taskName}
         placeholder="insert task"
         onChange={handleChange}

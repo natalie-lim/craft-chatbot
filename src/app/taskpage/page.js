@@ -131,14 +131,14 @@ export default function TaskPage() {
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            className={`select-none p-1 h-8 justify-center items-center mb-2 rounded border transition-all ${
+            className={`select-none p-2 w-full justify-center items-center mb-2 rounded border transition-all ${
               snapshot.isDragging
                 ? "bg-green-300 border-white opacity-50"
                 : "bg-white border-gray-300 opacity-100"
             }`}
           >
             <div className="flex justify-between items-center">
-              <span>
+              <span className="w-full">
                 <Task
                   description={description}
                   column={columnKey}
