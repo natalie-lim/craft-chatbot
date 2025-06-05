@@ -47,7 +47,7 @@ async function updateFirestoreAfterDrag(taskMap, sourceCol, destCol, sourceIndex
       taskDescriptions: destTasks
     };
   }
-  
+  const docRef = doc(db, "userInfo", user.uid);
   await updateDoc(docRef, { tasks: updatedTasks });
 }
 
@@ -107,25 +107,45 @@ export default function TaskPage() {
     };
   }, []);  
 
+  function reorderLocal(taskMap, sourceCol, destCol, sourceIndex, destIndex) {
+    const updated = structuredClone(taskMap); // safer deep copy
+    if (sourceCol === destCol) {
+      const tasks = updated[sourceCol].taskDescriptions;
+      const [moved] = tasks.splice(sourceIndex, 1);
+      tasks.splice(destIndex, 0, moved);
+    } else {
+      const sourceTasks = updated[sourceCol].taskDescriptions;
+      const destTasks = updated[destCol].taskDescriptions;
+      const [moved] = sourceTasks.splice(sourceIndex, 1);
+      destTasks.splice(destIndex, 0, moved);
+    }
+    return updated;
+  }
+  
+
+
   async function onDragEnd(result) {
     const { source, destination } = result;
     if (!destination) return;
-
+  
     const sourceColIndex = parseInt(source.droppableId);
     const destColIndex = parseInt(destination.droppableId);
     const sourceColKey = taskIndex[sourceColIndex];
     const destColKey = taskIndex[destColIndex];
-
-    // Update Firestore directly
-    await updateFirestoreAfterDrag(
-      taskMap,
-      sourceColKey,
-      destColKey,
-      source.index,
-      destination.index,
-      taskIndex
-    );
-  }
+  
+    // 1. Update local UI immediately
+    const updated = reorderLocal(taskMap, sourceColKey, destColKey, source.index, destination.index);
+    setTaskMap(updated);
+  
+    // 2. Sync with Firestore in background
+    try {
+      const user = await getCurrentUser();
+      const docRef = doc(db, "userInfo", user.uid);
+      await updateDoc(docRef, { tasks: updated });
+    } catch (err) {
+      console.error("Failed to update Firestore:", err);
+    }
+  }  
 
   // Render tasks directly from Firestore data
   const renderTasks = (columnKey, groupIndex) => {
@@ -142,26 +162,26 @@ export default function TaskPage() {
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            className={`select-none p-2 w-full justify-center items-center mb-2 rounded border transition-all ${
+            className={`select-none p-2 w-full h-12 flex justify-between items-center mb-2 rounded border transition-all ${
               snapshot.isDragging
-                ? "bg-green-300 border-white opacity-50"
+                ? "bg-gray-300 border-white opacity-50"
                 : "bg-white border-gray-300 opacity-100"
             }`}
           >
-            <div className="flex justify-between items-center">
-              <span className="w-full">
+            <div className="flex items-center w-full">
+              <div className="flex-grow">
                 <Task
                   description={description}
                   column={columnKey}
                   index={itemIndex}
                   taskIndex={taskIndex}
                 />
-              </span>
+              </div>
               <button
                 onClick={async () => {
                   await deleteTaskFromFirestore(taskMap, columnKey, itemIndex);
                 }}
-                className="ml-2 text-red-500 hover:text-red-700 text-sm"
+                className="ml-4 text-red-500 hover:text-red-700 text-sm shrink-0"
               >
                 ✕
               </button>
@@ -192,7 +212,7 @@ export default function TaskPage() {
           <div className="flex align-top gap-1 m-8 overflow-x-auto">
             <DragDropContext onDragEnd={onDragEnd}>
               {taskIndex.map((columnKey, groupIndex) => (
-                <Droppable key={groupIndex} droppableId={`${groupIndex}`}>
+                <Droppable key={groupIndex} droppableId={columnKey}>
                   {(provided, snapshot) => (
                     <div
                       ref={provided.innerRef}
