@@ -3,7 +3,6 @@ import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db, user } from "../../../firebaseConfig";
 import { Space_Grotesk } from "next/font/google";
 import Popup from "reactjs-popup";
-import {getGPTResponse} from "../api/suggest"
 
 
 const spaceGrotesk = Space_Grotesk({
@@ -34,6 +33,22 @@ function getRandomPastelHex() {
 export default function Task({ description, column, index }) {
   const [taskName, setTaskName] = useState(description);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [aiSuggestion, setAiSuggestion] = useState("");
+  const fetchSuggestion = async () => {
+    try {
+      const res = await fetch("/api/suggest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: `Give suggestions for: ${taskName} and how much time it should take` }),
+      });
+      const data = await res.json();
+      return data.result;
+    } catch (err) {
+      console.error("Failed to fetch AI suggestion:", err);
+      return "Error retrieving suggestion.";
+    }
+  };
+  
 
   useEffect(() => {
     setTaskName(description);
@@ -81,17 +96,22 @@ export default function Task({ description, column, index }) {
 
   return (
     <div className="w-full flex flex-row justify-between items-center">
-      <Popup
-        trigger={
-          <button className="pr-2">
-            <img src="../assets/Key.svg" alt="ai help" width={20} height={20} />
-          </button>
-        }
-        position="bottom center"
-        closeOnDocumentClick
-      >
-      <div className="">
-          <div
+    <Popup
+      trigger={
+        <button className="pr-2">
+          <img src="../assets/Key.svg" alt="ai help" width={20} height={20} />
+        </button>
+      }
+      position="bottom center"
+      closeOnDocumentClick
+      onOpen={async () => {
+        setAiSuggestion("Loading...");
+        const result = await fetchSuggestion();
+        setAiSuggestion(result);
+      }}
+    >
+      <div>
+        <div
           className={`${spaceGrotesk.className} text-sm min-h-56 rounded shadow p-4 text-black`}
           style={{
             position: "fixed",
@@ -102,14 +122,14 @@ export default function Task({ description, column, index }) {
             zIndex: 50,
           }}
         >
-          AI suggestion popup for: {taskName}
-          <div className="w-full min-h-48 bg-white">
-
+          <p>AI suggestion for: <strong>{taskName}</strong></p>
+          <div className="w-full min-h-48 mt-4 bg-white p-2 rounded overflow-auto">
+            {aiSuggestion}
           </div>
         </div>
       </div>
+    </Popup>
 
-      </Popup>
 
       <input
         className={`${spaceGrotesk.className} text-sm bg-transparent outline-none flex-grow`}

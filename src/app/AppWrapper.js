@@ -8,6 +8,7 @@ function AppWrapper() {
     <Routes>
       <Route path="/" element={<Page />} />
       <Route path="/welcome" element={<Welcome />} />
+      
     </Routes>
   );
 }
