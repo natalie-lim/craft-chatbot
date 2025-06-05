@@ -1,12 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Space_Grotesk } from "next/font/google";
 import { useState } from "react";
 import { Space_Grotesk } from "next/font/google";
 import { signInWithPopup } from "firebase/auth";
 import {setDoc, doc, getDoc} from "firebase/firestore";
-import { auth, provider, db} from "../../firebaseConfig";
+import { auth, provider, db, firebaseConfig} from "../../firebaseConfig";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -54,20 +53,23 @@ export default function Home() {
   const router = useRouter();
   const [fadeOut, setFadeOut] = useState(false);
 
-  const handleClick = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        setFadeOut(true); // trigger fade-out
-        setTimeout(async () => {
-          let userLet = result.user;
-          await createDoc({ user: userLet }); 
-          router.push("/taskpage"); // navigate after 3s
-        }, 1200);
-      })
-      .catch((error) => {
-        console.error("Error during sign-in:", error.message);
-      });
-  };
+  const handleClick = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      setFadeOut(true);
+      console.log("Firebase config:", firebaseConfig);
+
+  
+      // Wait for fade-out animation
+      setTimeout(async () => {
+        const userLet = result.user;
+        await createDoc({ user: userLet }); 
+        router.push("/taskpage");
+      }, 1200);
+    } catch (error) {
+      console.error("Error during sign-in:", error.message);
+    }
+  };  
   
   return (
     <div className={`flex flex-col items-center min-h-screen justify-center transition-opacity duration-1000 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
