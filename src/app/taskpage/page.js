@@ -1,4 +1,3 @@
-// used this as a template: https://codesandbox.io/p/sandbox/-w5szl?file=%2Fsrc%2Findex.js%3A1%2C1-165%2C1
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -14,7 +13,7 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "600"],
 });
 
-// Delete a task from Firestore
+// 🔁 Delete a task from Firestore
 async function deleteTaskFromFirestore(taskMap, columnKey, taskIndex) {
   const user = await getCurrentUser();
   if (!user) return;
@@ -38,7 +37,7 @@ export default function TaskPage() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // Realtime Firestore sync
+  // 🔁 Realtime Firestore sync
   useEffect(() => {
     let unsubscribe;
 
@@ -71,7 +70,7 @@ export default function TaskPage() {
     };
   }, []);
 
-  // Immediate local update, then Firestore
+  // 🧠 Immediate local update, then Firestore
   async function onDragEnd(result) {
     const { source, destination } = result;
     if (!destination) return;
