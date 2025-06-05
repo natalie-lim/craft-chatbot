@@ -12,53 +12,55 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "600"],
 });
 
+function getRandomPastelHex() {
+  const hue = Math.floor(Math.random() * 360);
+  return `hsl(${hue}, 70%, 85%)`;
+}
+
 export default function TypeTaskHeader({ col, title, colorInput, taskIndex, taskMap }) {
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState(colorInput || getRandomPastelHex());
   const [headerTitle, setHeaderTitle] = useState(title || "");
   const [show, setShow] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [isUpdatingTitle, setIsUpdatingTitle] = useState(false);
   const [user, setUser] = useState(null);
+  const [isTypingTimeout, setIsTypingTimeout] = useState(null);
 
   const columnKey = taskIndex[col];
-
-  useEffect(() => {
-    if (colorInput !== undefined) {
-      setColor(colorInput);
-    } else {
-      setColor(getRandomPastelHex());
-    }
-
-    const fetchUser = async () => {
-      const currentUser = await getCurrentUser();
-      setUser(currentUser);
-    };
-
-    fetchUser();
-    setMounted(true);
-  }, [colorInput]);
 
   useEffect(() => {
     setHeaderTitle(title || "");
   }, [title]);
 
-  const handleTitleChange = async (e) => {
+  useEffect(() => {
+    if (colorInput) setColor(colorInput);
+  }, [colorInput]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const u = await getCurrentUser();
+      setUser(u);
+    };
+    fetchUser();
+  }, []);
+
+  const handleTitleChange = (e) => {
     const value = e.target.value;
     setHeaderTitle(value);
 
-    if (isUpdatingTitle || !user) return;
-    setIsUpdatingTitle(true);
+    if (isTypingTimeout) clearTimeout(isTypingTimeout);
 
-    try {
-      const docRef = doc(db, "userInfo", user.uid);
-      await updateDoc(docRef, {
-        [`tasks.${columnKey}.headerDescription`]: value,
-      });
-    } catch (err) {
-      console.error("Error updating title:", err);
-    } finally {
-      setTimeout(() => setIsUpdatingTitle(false), 300);
-    }
+    const newTimeout = setTimeout(async () => {
+      if (!user) return;
+      try {
+        const docRef = doc(db, "userInfo", user.uid);
+        await updateDoc(docRef, {
+          [`tasks.${columnKey}.headerDescription`]: value,
+        });
+      } catch (err) {
+        console.error("Error updating title:", err);
+      }
+    }, 400); // debounce time
+
+    setIsTypingTimeout(newTimeout);
   };
 
   const handleColorChange = async (newColor) => {
@@ -97,12 +99,11 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
       }
 
       const taskDescriptions = [...(columnData.taskDescriptions || [])];
-      taskDescriptions.push(""); // Add empty task
+      taskDescriptions.push(""); // add empty task
 
       await updateDoc(docRef, {
         [`tasks.${columnKey}.taskDescriptions`]: taskDescriptions,
       });
-
     } catch (err) {
       console.error("Error adding task:", err);
     }
@@ -119,23 +120,21 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
           value={headerTitle}
           placeholder="Column Title"
           onChange={handleTitleChange}
-          disabled={isUpdatingTitle}
         />
-        <div className="flex items-center space-x-2 z-10">
-          {mounted && (
-            <Popup
-              trigger={
-                <button onClick={() => setShow(!show)}>
-                  <img src="../assets/pencil.svg" alt="edit" width={18} height={18} />
-                </button>
-              }
-              position="bottom center"
-              onOpen={() => setShow(true)}
-              onClose={() => setShow(false)}
-            >
-              <HexColorPicker color={color} onChange={handleColorChange} />
-            </Popup>
-          )}
+        <div className="flex items-center space-x-2 z-10 ml-2">
+          <Popup
+            trigger={
+              <button onClick={() => setShow(!show)}>
+                <img src="../assets/pencil.svg" alt="edit" width={18} height={18} />
+              </button>
+            }
+            position="bottom center"
+            onOpen={() => setShow(true)}
+            onClose={() => setShow(false)}
+          >
+            <HexColorPicker color={color} onChange={handleColorChange} />
+          </Popup>
+
           <button onClick={handleAddTask}>
             <img src="../assets/plus-square.svg" alt="add task" width={20} height={20} />
           </button>
@@ -143,9 +142,4 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
       </div>
     </div>
   );
-}
-
-function getRandomPastelHex() {
-  const hue = Math.floor(Math.random() * 360);
-  return `hsl(${hue}, 70%, 85%)`;
 }

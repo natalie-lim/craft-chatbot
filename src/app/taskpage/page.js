@@ -121,7 +121,7 @@ export default function TaskPage() {
               {...provided.dragHandleProps}
               className={`select-none p-2 w-full justify-center items-center mb-2 rounded border transition-all duration-200 ${
                 snapshot.isDragging
-                  ? "bg-green-300 border-white opacity-50"
+                  ? "bg-gray-200 border-white opacity-50"
                   : "bg-white border-gray-300 opacity-100"
               }`}
             >
