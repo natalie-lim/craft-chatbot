@@ -1,61 +1,16 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { Space_Grotesk } from "next/font/google";
 import Popup from "reactjs-popup";
 import { HexColorPicker } from "react-colorful";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
-import { db, user } from "../../../firebaseConfig";
+import { db, getCurrentUser } from "../../../firebaseConfig";
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['400', '600'],
+  subsets: ["latin"],
+  weight: ["400", "600"],
 });
-
-
-// Function to add a new task directly to Firestore
-async function addTaskToFirestore(columnKey) {
-  try {
-    const docRef = doc(db, "userInfo", user.uid);
-    const docSnap = await getDoc(docRef);
-
-    if (!docSnap.exists()) {
-      console.error("Document not found");
-      return;
-    }
-
-    const data = docSnap.data();
-    const tasks = data.tasks || {};
-    const columnData = tasks[columnKey];
-
-    if (!columnData) {
-      console.error("Column not found in document");
-      return;
-    }
-
-    const taskDescriptions = [...(columnData.taskDescriptions || [])];
-    taskDescriptions.push(""); // Add empty task
-
-    await updateDoc(docRef, {
-      [`tasks.${columnKey}.taskDescriptions`]: taskDescriptions,
-    });
-
-    console.log(`New task added to column: ${columnKey}`);
-  } catch (err) {
-    console.error("Error adding task:", err);
-  }
-}
-
-// Function to update header title
-async function updateHeaderTitle(columnKey, newTitle) {
-  try {
-    const docRef = doc(db, "userInfo", user.uid);
-    await updateDoc(docRef, {
-      [`tasks.${columnKey}.headerDescription`]: newTitle,
-    });
-    console.log(`Header updated for column: ${columnKey}`);
-  } catch (err) {
-    console.error("Error updating header:", err);
-  }
-}
 
 export default function TypeTaskHeader({ col, title, colorInput, taskIndex, taskMap }) {
   const [color, setColor] = useState("");
@@ -63,9 +18,9 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
   const [show, setShow] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isUpdatingTitle, setIsUpdatingTitle] = useState(false);
+  const [user, setUser] = useState(null);
 
   const columnKey = taskIndex[col];
-  const docRef = doc(db, "userInfo", user.uid);
 
   useEffect(() => {
     if (colorInput !== undefined) {
@@ -73,6 +28,13 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
     } else {
       setColor(getRandomPastelHex());
     }
+
+    const fetchUser = async () => {
+      const currentUser = await getCurrentUser();
+      setUser(currentUser);
+    };
+
+    fetchUser();
     setMounted(true);
   }, [colorInput]);
 
@@ -84,12 +46,14 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
     const value = e.target.value;
     setHeaderTitle(value);
 
-    // Debounce the update
-    if (isUpdatingTitle) return;
+    if (isUpdatingTitle || !user) return;
     setIsUpdatingTitle(true);
 
     try {
-      await updateHeaderTitle(columnKey, value);
+      const docRef = doc(db, "userInfo", user.uid);
+      await updateDoc(docRef, {
+        [`tasks.${columnKey}.headerDescription`]: value,
+      });
     } catch (err) {
       console.error("Error updating title:", err);
     } finally {
@@ -99,18 +63,49 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
 
   const handleColorChange = async (newColor) => {
     setColor(newColor);
+    if (!user) return;
+
     try {
+      const docRef = doc(db, "userInfo", user.uid);
       await updateDoc(docRef, {
         [`tasks.${columnKey}.color`]: newColor,
       });
-      console.log(`Color updated for column: ${columnKey}`);
     } catch (err) {
       console.error("Error updating color:", err);
     }
   };
 
   const handleAddTask = async () => {
-    await addTaskToFirestore(columnKey);
+    if (!user) return;
+
+    try {
+      const docRef = doc(db, "userInfo", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        console.error("Document not found");
+        return;
+      }
+
+      const data = docSnap.data();
+      const tasks = data.tasks || {};
+      const columnData = tasks[columnKey];
+
+      if (!columnData) {
+        console.error("Column not found in document");
+        return;
+      }
+
+      const taskDescriptions = [...(columnData.taskDescriptions || [])];
+      taskDescriptions.push(""); // Add empty task
+
+      await updateDoc(docRef, {
+        [`tasks.${columnKey}.taskDescriptions`]: taskDescriptions,
+      });
+
+    } catch (err) {
+      console.error("Error adding task:", err);
+    }
   };
 
   return (
@@ -138,10 +133,7 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
               onOpen={() => setShow(true)}
               onClose={() => setShow(false)}
             >
-              <HexColorPicker
-                color={color}
-                onChange={handleColorChange}
-              />
+              <HexColorPicker color={color} onChange={handleColorChange} />
             </Popup>
           )}
           <button onClick={handleAddTask}>
@@ -151,4 +143,9 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
       </div>
     </div>
   );
+}
+
+function getRandomPastelHex() {
+  const hue = Math.floor(Math.random() * 360);
+  return `hsl(${hue}, 70%, 85%)`;
 }

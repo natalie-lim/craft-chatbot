@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
-import { db, user } from "../../../firebaseConfig";
+import { db, getCurrentUser } from "../../../firebaseConfig";
 import { Space_Grotesk } from "next/font/google";
 import Popup from "reactjs-popup";
 
@@ -62,6 +62,7 @@ export default function Task({ description, column, index }) {
     setIsUpdating(true);
 
     try {
+      const user = getCurrentUser();
       const docRef = doc(db, "userInfo", user.uid);
       const docSnap = await getDoc(docRef);
 

@@ -23,6 +23,5 @@ async function getCurrentUser() {
       resolve(user);
     }, reject);
   });
-}
-const user = await getCurrentUser();
-export { auth, provider, db, firebaseConfig, user };
+};
+export { auth, provider, db, firebaseConfig, getCurrentUser };

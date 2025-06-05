@@ -96,7 +96,7 @@ export default function Home() {
         <div className="flex flex-row">
         <TypingText delay = {150} text ="Task Manager." ></TypingText>
         </div>
-        <h2 className={`${spaceGrotesk.className} text-lg pt-4`}>let's get your life together</h2>
+        <h2 className={`${spaceGrotesk.className} text-lg pt-4`}>let&apos;s get your life together</h2>
         <button 
           onClick={handleClick}
           className="flex justify-center items-center h-10 w-58 mt-12 bg-[#357266] rounded-lg

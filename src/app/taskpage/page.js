@@ -8,17 +8,17 @@ import { Space_Grotesk } from "next/font/google";
 import { getFirestore, doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
 import TypeTaskHeader from "./TypeTaskHeader";
 import Task from "./Task";
-import { auth, provider, db, user} from "../../../firebaseConfig";
+import { auth, provider, db, getCurrentUser} from "../../../firebaseConfig";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['400', '600'],
 });
-
+const user = getCurrentUser();
 // Helper function to update Firestore after drag operations
 async function updateFirestoreAfterDrag(taskMap, sourceCol, destCol, sourceIndex, destIndex, taskIndex) {
-  const docRef = doc(db, "userInfo", user.uid);
-  
+  const user = await getCurrentUser(); // move inside the function
+  console.log(user);
   const updatedTasks = { ...taskMap };
   
   if (sourceCol === destCol) {
@@ -54,7 +54,8 @@ async function updateFirestoreAfterDrag(taskMap, sourceCol, destCol, sourceIndex
 // Helper function to delete a task from Firestore
 async function deleteTaskFromFirestore(taskMap, columnKey, taskIndex) {
   const docRef = doc(db, "userInfo", user.uid);
-  
+  const user = await getCurrentUser(); // move inside the function
+  console.log(user);
   const updatedTasks = { ...taskMap };
   const tasks = [...updatedTasks[columnKey].taskDescriptions];
   tasks.splice(taskIndex, 1);
@@ -74,27 +75,37 @@ export default function TaskPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const docRef = doc(db, "userInfo", user.uid);
-    
-    // Set up real-time listener for Firestore changes
-    const unsubscribe = onSnapshot(docRef, (docSnap) => {
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setName(data.displayName || "friend");
-        
-        const tasks = data.tasks || {};
-        setTaskMap(tasks);
-        setTaskIndex(Object.keys(tasks));
-        setLoading(false);
-      } else {
-        console.log("No such document!");
-        setLoading(false);
-      }
-    });
-
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
-  }, []);
+    let unsubscribe;
+  
+    const fetchUserAndSubscribe = async () => {
+      const user = await getCurrentUser();
+      if (!user) return;
+  
+      const docRef = doc(db, "userInfo", user.uid);
+  
+      unsubscribe = onSnapshot(docRef, (docSnap) => {
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setName(data.displayName || "friend");
+  
+          const tasks = data.tasks || {};
+          setTaskMap(tasks);
+          setTaskIndex(Object.keys(tasks));
+          setLoading(false);
+        } else {
+          console.log("No such document!");
+          setLoading(false);
+        }
+      });
+    };
+  
+    fetchUserAndSubscribe();
+  
+    // Cleanup
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
+  }, []);  
 
   async function onDragEnd(result) {
     const { source, destination } = result;
