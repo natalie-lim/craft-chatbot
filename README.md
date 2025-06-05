@@ -1,6 +1,6 @@
 # Task Manager
 
-A Firebase-authenticated, real-time, and drag-and-drop task manager built with React, Next.js, styled using Tailwind CSS, and maintained using Firebase Firestore. Customize your workflow, edit task column headers, and receive task content generated with tones ranging from flattering to bitchy.
+A Firebase-authenticated, real-time, and drag-and-drop task manager built with React, Next.js, styled using Tailwind CSS, and maintained using Firebase Firestore. Customize your workflow, edit task column headers, and receive task content generated with tones ranging from flattering to mean af.
 
 Modern task management with a touch of personality.
 
