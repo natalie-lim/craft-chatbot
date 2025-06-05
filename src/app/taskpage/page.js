@@ -41,6 +41,8 @@ export default function TaskPage() {
   const [loading, setLoading] = useState(true);
   const [meanness, setMeanness] = useState("nice");
   const [wordCount, setWordCount] = useState(150);
+  const meannessLevels = ["flattering", "encouraging", "pragmatic", "stern", "bitchy"];
+
 
   //  Realtime Firestore sync
   useEffect(() => {
@@ -224,6 +226,43 @@ export default function TaskPage() {
               ))}
             </DragDropContext>
           </div>
+        </div>
+      </div>
+      {/* Sliders at the bottom */}
+      <div className="fixed bottom-2 m-4 left-0 w-full bg-white shadow-inner px-8 py-4 flex justify-between items-center z-50">
+      {/* Word Count Slider */}
+        <div className="flex flex-col">
+          <label className={`${spaceGrotesk.className} text-sm mb-1`}>
+            Word Count: {wordCount}
+          </label>
+          <input
+            type="range"
+            min="50"
+            max="300"
+            step="10"
+            value={wordCount}
+            onChange={(e) => setWordCount(parseInt(e.target.value))}
+            className="w-64 accent-black"
+          />
+        </div>
+
+    {/* Meanness Slider */}
+        <div className="flex flex-col mr-8">
+          <label className={`${spaceGrotesk.className} text-sm mb-1`}>
+            Tone: {meanness}
+          </label>
+          <input
+            type="range"
+            min="0"
+            max={meannessLevels.length - 1}
+            step="0."
+            value={meannessLevels.indexOf(meanness)}
+            onChange={(e) => {
+              const val = parseInt(e.target.value);
+              setMeanness(meannessLevels[val]);
+            }}
+            className="w-64 accent-black"
+          />
         </div>
       </div>
     </div>
