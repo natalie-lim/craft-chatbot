@@ -12,7 +12,7 @@ const icons = [
   { file: "Key.svg", label: "ai insights for your task" },
   { file: "pencil.svg", label: "change heading colors" },
   { file: "plus-square.svg", label: "add task to column" },
-  { file: "sliders.svg", label: "changes the AI tone and response length" },
+  { file: "Sliders.svg", label: "changes the AI tone and response length" },
 ];
 
 export default function IconList() {
