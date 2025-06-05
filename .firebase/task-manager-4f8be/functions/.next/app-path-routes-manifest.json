@@ -1,7 +1,0 @@
-{
-  "/api/suggest/route": "/api/suggest",
-  "/favicon.ico/route": "/favicon.ico",
-  "/_not-found/page": "/_not-found",
-  "/page": "/",
-  "/taskpage/page": "/taskpage"
-}
