@@ -36,7 +36,7 @@ export default function Task({ description, meanness, wordCount, column, index }
       const res = await fetch("/api/suggest", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: `Give suggestions for a person who wants to complete ${taskName} and say it really ${meanness} using only about ${wordCount} words` }),
+        body: JSON.stringify({ prompt: `give advict on how to ${taskName} and say it really ${meanness} using only about ${wordCount} words` }),
       });
       const data = await res.json();
       return data.result;
@@ -126,7 +126,7 @@ export default function Task({ description, meanness, wordCount, column, index }
       </Popup>
 
       <input
-        className={`${spaceGrotesk.className} text-sm w-full bg-transparent outline-none flex-grow`}
+        className={`${spaceGrotesk.className} text-med w-full bg-transparent outline-none flex-grow`}
         value={taskName}
         placeholder="insert task"
         onChange={handleChange}

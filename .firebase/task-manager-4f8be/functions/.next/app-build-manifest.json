@@ -18,10 +18,10 @@
       "static/css/app/taskpage/page.css",
       "static/chunks/app/taskpage/page.js"
     ],
-    "/_not-found/page": [
+    "/api/suggest/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/api/suggest/route.js"
     ]
   }
 }

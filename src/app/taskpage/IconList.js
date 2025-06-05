@@ -12,6 +12,7 @@ const icons = [
   { file: "Key.svg", label: "ai insights for your task" },
   { file: "pencil.svg", label: "change heading colors" },
   { file: "plus-square.svg", label: "add task to column" },
+  { file: "sliders.svg", label: "changes the AI tone and response length" },
 ];
 
 export default function IconList() {
@@ -20,7 +21,7 @@ export default function IconList() {
       {icons.map(({ file, label }) => (
         <div key={file} className="flex items-center gap-3">
           <img src={`../assets/${file}`} alt={label} width={24} height={24} />
-          <span className={`${spaceGrotesk.className} text-xl`}>{label}</span>
+          <span className={`${spaceGrotesk.className} text-lg`}>{label}</span>
         </div>
       ))}
     </div>

@@ -116,7 +116,7 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
         style={{ backgroundColor: color }}
       >
         <input
-          className={`${spaceGrotesk.className} text-xl bg-transparent outline-none w-full`}
+          className={`${spaceGrotesk.className} text-xl font-semibold bg-transparent outline-none w-full`}
           value={headerTitle}
           placeholder="Column Title"
           onChange={handleTitleChange}

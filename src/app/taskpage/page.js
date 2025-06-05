@@ -39,7 +39,7 @@ export default function TaskPage() {
   const [taskIndex, setTaskIndex] = useState([]);
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
-  const [meanness, setMeanness] = useState("nice");
+  const [meanness, setMeanness] = useState("flattering");
   const [wordCount, setWordCount] = useState(150);
   const meannessLevels = ["flattering", "encouraging", "pragmatic", "stern", "bitchy"];
 
@@ -126,14 +126,14 @@ export default function TaskPage() {
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-              className={`select-none p-2 w-full justify-center items-center mb-2 rounded border transition-all duration-200 ${
+              className={`select-none p-2 w-full h-12 justify-center items-center mb-2 rounded border transition-all duration-200 ${
                 snapshot.isDragging
                   ? "bg-gray-200 border-white opacity-50"
                   : "bg-white border-gray-300 opacity-100"
               }`}
             >
-              <div className="flex items-center w-full">
-                <div className="flex-grow">
+              <div className="flex justify-center w-full ">
+                <div className="flex-grow pt-2">
                   <Task
                     description={description}
                     meanness={meanness}
@@ -171,18 +171,18 @@ export default function TaskPage() {
     <div>
       <div className="pt-8 flex flex-col items-left pl-24">
         <TypingText text={"tasks."}/>
-        <h2 className={`${spaceGrotesk.className} text-xl pt-2`}>{name}
+        <h2 className={`${spaceGrotesk.className} text-2xl pt-2`}>{name}
         </h2>
       </div>
 
       <div className="absolute top-6 right-8 flex pt-8 gap-4 z-50">
         <Popup
           trigger={<button
-            className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition"
+            className="bg-black text-white w-24 px-4 py-2 rounded-lg hover:bg-gray-800 transition"
           >
           info
           </button>}
-          position="bottom center"
+          position="bottom right"
           closeOnDocumentClick
           onOpen={async () => {
           }}
@@ -190,9 +190,10 @@ export default function TaskPage() {
         <div
           className={`rounded shadow p-4 max-w-60 text-black bg-gray-200`}
         >
-          <h2 className={`${spaceGrotesk.className} text-lg text-black`}>what each symbol means: </h2>
+          <h2 className={`${spaceGrotesk.className} text-lg text-black`}>what each symbol means </h2>
           <IconList 
           />
+          <h2 className={`${spaceGrotesk.className} text-lg text-black`}>click to edit the tasks, drag & drop</h2>
         </div>
         </Popup>
       </div>
@@ -232,7 +233,7 @@ export default function TaskPage() {
       <div className="fixed bottom-2 m-4 left-0 w-full bg-white shadow-inner px-8 py-4 flex justify-between items-center z-50">
       {/* Word Count Slider */}
         <div className="flex flex-col">
-          <label className={`${spaceGrotesk.className} text-sm mb-1`}>
+          <label className={`${spaceGrotesk.className} text-med font-semibold m-1`}>
             Word Count: {wordCount}
           </label>
           <input
@@ -242,13 +243,13 @@ export default function TaskPage() {
             step="10"
             value={wordCount}
             onChange={(e) => setWordCount(parseInt(e.target.value))}
-            className="w-64 accent-black"
+            className="w-72 accent-black"
           />
         </div>
 
     {/* Meanness Slider */}
         <div className="flex flex-col mr-8">
-          <label className={`${spaceGrotesk.className} text-sm mb-1`}>
+          <label className={`${spaceGrotesk.className} text-med font-semibold mb-1`}>
             Tone: {meanness}
           </label>
           <input
@@ -261,7 +262,7 @@ export default function TaskPage() {
               const val = parseInt(e.target.value);
               setMeanness(meannessLevels[val]);
             }}
-            className="w-64 accent-black"
+            className="w-72 accent-black"
           />
         </div>
       </div>
