@@ -107,15 +107,13 @@ export default function Task({ description, column, index }) {
         }}
       >
         <div
-          className={`${spaceGrotesk.className} text-sm min-h-56 rounded shadow p-4 text-black bg-gray-200`}
+          className={`${spaceGrotesk.className} text-sm rounded shadow p-4 text-black bg-gray-200`}
           style={{
             position: "fixed",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             zIndex: 50,
-            maxWidth: "80vw",
-            width: "400px",
           }}
         >
           <p>

@@ -14,7 +14,7 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "600"],
 });
 
-// 🔁 Delete a task from Firestore
+//  Delete a task from Firestore
 async function deleteTaskFromFirestore(taskMap, columnKey, taskIndex) {
   const user = await getCurrentUser();
   if (!user) return;
@@ -38,7 +38,7 @@ export default function TaskPage() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // 🔁 Realtime Firestore sync
+  //  Realtime Firestore sync
   useEffect(() => {
     let unsubscribe;
 
@@ -71,7 +71,7 @@ export default function TaskPage() {
     };
   }, []);
 
-  // 🧠 Immediate local update, then Firestore
+  //  Immediate local update, then Firestore
   async function onDragEnd(result) {
     const { source, destination } = result;
     if (!destination) return;
@@ -161,10 +161,25 @@ export default function TaskPage() {
 
   return (
     <div>
-      <div className="pt-12 flex flex-col items-left pl-24">
+      <div className="pt-8 flex flex-col items-left pl-24">
         <TypingText text={"tasks."}/>
-        <h2 className={`${spaceGrotesk.className} text-xl pt-4`}>Seize the day {name}
+        <h2 className={`${spaceGrotesk.className} text-xl pt-2`}>{name}
         </h2>
+      </div>
+
+      <div className="absolute top-6 right-8 flex pt-8 gap-4 z-50">
+        <button
+          onClick={() => alert("Add column clicked!")}
+          className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition"
+        >
+          info
+        </button>
+        <button
+          onClick={() => alert("Log out clicked!")}
+          className="border border-black text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition"
+        >
+          settings
+        </button>
       </div>
 
       <div className="flex items-center justify-center w-full">
