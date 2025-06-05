@@ -3,7 +3,7 @@ import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db, user } from "../../../firebaseConfig";
 import { Space_Grotesk } from "next/font/google";
 import Popup from "reactjs-popup";
-import Draggable from "react-draggable";
+import {getGPTResponse} from "../api/suggest"
 
 
 const spaceGrotesk = Space_Grotesk({
