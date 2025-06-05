@@ -1,4 +1,5 @@
 // used this as a template: https://codesandbox.io/p/sandbox/-w5szl?file=%2Fsrc%2Findex.js%3A1%2C1-165%2C1
+//api key: ***REMOVED***
 "use client";
 
 import React, { useState, useEffect } from "react";
