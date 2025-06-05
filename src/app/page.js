@@ -91,16 +91,24 @@ export default function Home() {
   };  
   
   return (
-    <div className={`flex flex-col items-center min-h-screen justify-center transition-opacity duration-1000 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
-      <TypingText delay = {150} text ="Task Manager." ></TypingText>
-      <h2 className={`${spaceGrotesk.className} text-lg pt-4`}>let's get your life together</h2>
-      <button 
-        onClick={handleClick}
-        className="flex justify-center items-center h-10 w-58 mt-12 bg-[#357266] rounded-lg
-        transition-opacity duration-200 hover:opacity-80 active:opacity-50"
-      >
-        <h2 className={`${spaceGrotesk.className} text-2xl text-white`}>start</h2>
-      </button>
+    <div className={`transition-opacity duration-1000 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
+      <div className={`flex flex-col items-center min-h-screen justify-center`}>
+        <div className="flex flex-row">
+        <TypingText delay = {150} text ="Task Manager." ></TypingText>
+        </div>
+        <h2 className={`${spaceGrotesk.className} text-lg pt-4`}>let's get your life together</h2>
+        <button 
+          onClick={handleClick}
+          className="flex justify-center items-center h-10 w-58 mt-12 bg-[#357266] rounded-lg
+          transition-opacity duration-200 hover:opacity-80 active:opacity-50"
+        >
+          <h2 className={`${spaceGrotesk.className} text-2xl text-white`}>start</h2>
+        </button>
+      </div>
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+        <img src="../assets/logo.svg" alt="ai help" width={110} />
+      </div>
+
     </div>
   );
 }
