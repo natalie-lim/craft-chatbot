@@ -4,7 +4,12 @@ A Firebase-authenticated, real-time, and drag-and-drop task manager built with R
 
 Modern task management with a touch of personality.
 
-Check it out here: [https://task-manager-4f8be.web.app/] 
+Check it out here: [https://task-manager-4f8be.web.app/]!
+
+---
+## Approach/Process
+
+I first started with more of what I knew, making mock-ups in figma and rendering it with a frontend tech stack. I was lucky that hello-pangea/dnd had a wonderful drag-and-drop example I riffed off of. That was actually harder than I expected, but I finished that first. I had a great time overall and was very happy with the way it turned out, especially with the color changing headers. Then, I had to find a way for the data to be represented in the backend. I decided on one document per user within the collection on Firestore. Within that document I stored data about the person, the most important piece of data being the map that stored the state of the kanban board. It was a map where the keys were ints. I made the keys ints to guarantee the order in which the different types of tasks would render. Otherwise they would be sorted according to arbitrary orders if the header value changed. Within each value, I stored the hexCode of the header, the header description, and the various tasks under that header. That way, I could load all the necessary information from and to firestore when changes occured. This was such a mess, to be frank. There were a lot of issues with data persistance and data being wiped out. However, once I got passed that part, the rest was smooth sailing. I simply made some UI tweaks and added the chatBot element. 
 
 ---
 
