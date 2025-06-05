@@ -12,7 +12,6 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 
-
 export default function Task({ description, column, index }) {
   const [taskName, setTaskName] = useState(description);
   const [isUpdating, setIsUpdating] = useState(false);

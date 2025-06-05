@@ -6,6 +6,7 @@ import { Space_Grotesk } from "next/font/google";
 import { doc, updateDoc, onSnapshot } from "firebase/firestore";
 import TypeTaskHeader from "./TypeTaskHeader";
 import Task from "./Task";
+import TypingText from "../TypingText";
 import { db, getCurrentUser } from "../../../firebaseConfig";
 
 const spaceGrotesk = Space_Grotesk({
@@ -160,16 +161,15 @@ export default function TaskPage() {
 
   return (
     <div>
-      <div className="pt-12 flex flex-col items-center justify-center">
-        <h1 className={`${spaceGrotesk.className} text-5xl`}>tasks</h1>
-        <h2 className={`${spaceGrotesk.className} text-xl pt-4`}>
-          Seize the day {name}
+      <div className="pt-12 flex flex-col items-left pl-24">
+        <TypingText text={"tasks."}/>
+        <h2 className={`${spaceGrotesk.className} text-xl pt-4`}>Seize the day {name}
         </h2>
       </div>
 
       <div className="flex items-center justify-center w-full">
         <div className="flex flex-row">
-          <div className="flex align-top gap-1 m-8 overflow-x-auto">
+          <div className="flex w-screen gap-4 pl-24 pr-24 pt-8 overflow-x-hidden">
             <DragDropContext onDragEnd={onDragEnd}>
               {taskIndex.map((columnKey, groupIndex) => (
                 <Droppable key={columnKey} droppableId={`${groupIndex}`}>
@@ -177,9 +177,9 @@ export default function TaskPage() {
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className={`min-h-[100px] align-top rounded shadow transition-colors ${
-                        snapshot.isDraggingOver ? "bg-gray-100" : "white"
-                      }`}
+                      className={`flex flex-col flex-1 min-h-[100px] transition-colors ${
+                        snapshot.isDraggingOver ? "bg-gray-100" : "bg-white"
+                      }`}                      
                     >
                       <TypeTaskHeader
                         col={groupIndex}
