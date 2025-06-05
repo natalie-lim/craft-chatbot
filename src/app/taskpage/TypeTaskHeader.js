@@ -63,19 +63,26 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
     setIsTypingTimeout(newTimeout);
   };
 
-  const handleColorChange = async (newColor) => {
+  const handleColorChange = (newColor) => {
     setColor(newColor);
+  
+    // Debounce or delay the Firestore update
     if (!user) return;
-
-    try {
-      const docRef = doc(db, "userInfo", user.uid);
-      await updateDoc(docRef, {
-        [`tasks.${columnKey}.color`]: newColor,
-      });
-    } catch (err) {
-      console.error("Error updating color:", err);
-    }
+  
+    // Optional: debounce with timeout to reduce writes
+    clearTimeout(window.__colorUpdateTimeout);
+    window.__colorUpdateTimeout = setTimeout(async () => {
+      try {
+        const docRef = doc(db, "userInfo", user.uid);
+        await updateDoc(docRef, {
+          [`tasks.${columnKey}.color`]: newColor,
+        });
+      } catch (err) {
+        console.error("Error updating color:", err);
+      }
+    }, 300); // 300ms debounce
   };
+  
 
   const handleAddTask = async () => {
     if (!user) return;
@@ -125,7 +132,7 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
           <Popup
             trigger={
               <button onClick={() => setShow(!show)}>
-                <img src="../assets/pencil.svg" alt="edit" width={18} height={18} />
+                <img src="../assets/pencil.svg" alt="edit" width={24} height={24} />
               </button>
             }
             position="bottom center"
@@ -136,7 +143,7 @@ export default function TypeTaskHeader({ col, title, colorInput, taskIndex, task
           </Popup>
 
           <button onClick={handleAddTask}>
-            <img src="../assets/plus-square.svg" alt="add task" width={20} height={20} />
+            <img src="../assets/plus-square.svg" alt="add task" width={24} height={2240} />
           </button>
         </div>
       </div>
