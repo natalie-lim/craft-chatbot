@@ -1,11 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Space_Grotesk } from "next/font/google";
-import { signInWithPopup } from "firebase/auth";
-import {setDoc, doc, getDoc} from "firebase/firestore";
-import { auth, provider, db, firebaseConfig} from "../../firebaseConfig";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],

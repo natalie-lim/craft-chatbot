@@ -87,8 +87,9 @@ export default function Home() {
           <h2 className={`${spaceGrotesk.className} text-2xl text-white`}>start</h2>
         </button>
       </div>
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-        <img src="../assets/logo.svg" alt="ai help" width={110} />
+     {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2"> */}
+     <div className={`${spaceGrotesk.className} text-sm bottom-4 left-1/2 transform absolute -translate-x-1/2`}>
+        made w love by natalie lim
       </div>
 
     </div>
