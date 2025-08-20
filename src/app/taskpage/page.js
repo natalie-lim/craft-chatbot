@@ -41,7 +41,7 @@ export default function TaskPage() {
   const [loading, setLoading] = useState(true);
   const [meanness, setMeanness] = useState("flattering");
   const [wordCount, setWordCount] = useState(150);
-  const meannessLevels = ["flattering", "encouraging", "pragmatic", "stern", "bitchy"];
+  const meannessLevels = ["flattering", "encouraging", "pragmatic", "stern", "mean"];
 
 
   //  Realtime Firestore sync
