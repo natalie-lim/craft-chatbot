@@ -11,7 +11,7 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "600"] 
 
 export default function SewingChatbot() {
   const router = useRouter();
-  const go = (path) => () => router.push(path); // helper
+  const go = (path) => () => router.push(path);
 
   return (
     <div className={`${spaceGrotesk.className} bg-[#f0efeb] min-h-screen w-full`}>
