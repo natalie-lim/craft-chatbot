@@ -15,7 +15,9 @@ export default function Chatbot({ category = "none", textColor }) {
   const [messages, setMessages] = useState([
     {
       role: "bot",
-      text: `Welcome to CraftBot! Pick a category and ask me anything about ${category || "your craft"} ✂️🧶`,
+      text: `Welcome to CraftBot! Pick a category and ask me anything about ${
+        category || "your craft"
+      } ✂️🧶`,
     },
   ]);
 
@@ -26,8 +28,13 @@ export default function Chatbot({ category = "none", textColor }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          prompt: `give advice on how to solve the issue of ${q} and if the issue is not
-          pertaining to the topic of ${category}, then say "I am not a chatbot for that subject"`,
+          prompt: `Give advice on how to solve the issue of ${q}. 
+          If the issue is directly or even tangentially related to ${category} 
+          (for example, questions about crafting materials, gauge, patterns, 
+          techniques, or tools), then provide a helpful answer. 
+          If it is clearly unrelated to ${category}, then reply: 
+          "I am not a chatbot for that subject."`
+          
         }),
       });
       const data = await res.json();
@@ -154,7 +161,9 @@ export default function Chatbot({ category = "none", textColor }) {
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               className="flex-1 text-sm px-3 py-2 border border-[#967342] rounded bg-white placeholder:text-[#b6a79f] focus:outline-none"
-              placeholder={`Type your ${category || "craft"} question…`}
+              placeholder={`Type your ${
+                category.toLowerCase() || "craft"
+              } question…`}
               aria-label="Your question"
             />
             <button
