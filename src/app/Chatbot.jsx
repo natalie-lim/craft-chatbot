@@ -34,7 +34,8 @@ export default function Chatbot({ category = "none", textColor, bgColor }) {
           prompt: `Give advice on how to solve the issue of ${q}. 
           If the issue is directly or even tangentially related to ${category} 
           (for example, questions about crafting materials, gauge, patterns, 
-          techniques, or tools), then provide a helpful answer. 
+          techniques, or tools), then provide a helpful answer. Keep it to around
+          3-4 sentences, unless longer is needed to provide a helpful response.
           If it is clearly unrelated to ${category}, then reply: 
           "I am not a chatbot for that subject."`,
         }),

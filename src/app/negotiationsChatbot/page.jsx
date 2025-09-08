@@ -20,7 +20,7 @@ export default function Negotiations({
     <div
       className={`${spaceGrotesk.className} bg-[#f0efeb] min-h-screen w-full`}
     >
-      <NegotiationsBot textColor="text-[#cfbaf0]" bgColor="bg-[#E9DFF7]" />
+      <NegotiationsBot textColor="text-[#95b8d1]" bgColor="bg-[#D3E6F5]" />
     </div>
   );
 }

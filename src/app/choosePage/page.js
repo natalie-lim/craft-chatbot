@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { Space_Grotesk } from "next/font/google";
 import TypingText from "../TypingText";
-import { Scissors, Pin, Spool, User } from "lucide-react";
+import { Scissors, Pin, Spool, User, ArrowLeft } from "lucide-react";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -19,6 +19,16 @@ export default function ChoosePage() {
     <div
       className={`${spaceGrotesk.className} bg-[#f0efeb] min-h-screen w-full`}
     >
+      <button
+      onClick={() => router.push("/")}
+      className="absolute top-4 left-4 flex items-center gap-2 px-4 py-2 
+                 rounded-lg border border-[#967342] bg-[#f0efeb]/70 
+                 text-[#967342] font-semibold shadow-[0_3px_0_0_#967342] 
+                 hover:bg-[#f0efeb]/90 hover:translate-y-[1px] transition"
+    >
+      <ArrowLeft className="h-4 w-4" />
+      Back
+    </button>
       <div className="flex flex-col items-center justify-center pt-48 px-6">
         <TypingText textColor="text-[#d5bdaf]" text="choose your chatbot" />
         <div className="flex flex-row flex-wrap gap-8 mt-24 p-4">
