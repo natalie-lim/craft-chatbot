@@ -4,12 +4,16 @@ export const fetchCache = "force-no-store";
 
 import { OpenAI } from "openai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 export async function POST(req) {
   try {
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      return new Response(
+        JSON.stringify({ error: "Missing OPENAI_API_KEY on server" }),
+        { status: 500 }
+      );
+    }
+    const openai = new OpenAI({ apiKey });
     const { prompt } = await req.json();
 
     const chat = await openai.chat.completions.create({
