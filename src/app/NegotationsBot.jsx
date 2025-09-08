@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Space_Grotesk } from "next/font/google";
 import TypingText from "./TypingText";
 import { ArrowLeft } from "lucide-react";
@@ -17,7 +17,12 @@ export default function NegotiationsBot({ textColor, bgColor }) {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [question, setQuestion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const handleSave = () => {};
+  const [latestUserOffer, setLatestUserOffer] = useState(null);
+  const [latestAssistantOffer, setLatestAssistantOffer] = useState(null);
+  const handleSave = () => {
+    console.log("user: " + latestUserOffer);
+    console.log("assistatn: " + latestAssistantOffer);
+  };
   const [messages, setMessages] = useState([
     {
       role: "bot",
@@ -26,7 +31,6 @@ export default function NegotiationsBot({ textColor, bgColor }) {
   ]);
   const fetchSuggestion = async (q) => {
     try {
-      // --- helpers ------------------------------------------------------------
       const parseOffer = (text) => {
         const m = [...(text || "").matchAll(/\$?\s*(\d+(?:\.\d+)?)/g)];
         if (!m.length) return null;
@@ -35,16 +39,14 @@ export default function NegotiationsBot({ textColor, bgColor }) {
       };
 
       // derive latest numeric offers from the transcript
-      let latestUserOffer = null;
-      let latestAssistantOffer = null;
       for (let i = messages.length - 1; i >= 0; i--) {
         const m = messages[i];
         const offer = parseOffer(m.text);
         if (offer != null) {
           if (m.role === "user" && latestUserOffer == null)
-            latestUserOffer = offer;
+            setLatestUserOffer(offer);
           if (m.role === "bot" && latestAssistantOffer == null)
-            latestAssistantOffer = offer;
+            setLatestAssistantOffer(offer);
         }
         if (latestUserOffer != null && latestAssistantOffer != null) break;
       }
@@ -65,17 +67,23 @@ export default function NegotiationsBot({ textColor, bgColor }) {
 
       GOALS:
       - Negotiate efficiently and fairly.
-      - Always respond with a concrete dollar amount when making/countering/accepting an offer.
+      - Always respond with a concrete offer when making/countering/accepting an offer.
+
+      CRAFT MATERIALS LIST:
+      Fabric, thread, needles, sewing machine, fabric scissors, embroidery scissors, pinking shears, 
+      pins, pin cushion, measuring tape, seam ripper, tailor’s chalk, iron, interfacing, zippers, 
+      buttons, snaps, hooks, patterns, yarn, knitting needles (straight/circular/double-pointed), 
+      crochet hooks, stitch markers, row counters, yarn/tapestry needle, small scissors/snips, 
+      blocking mats, blocking pins, cable needle, project bag.
 
       GUARDRAILS:
       - Respond with an offer when the question IS related to knitting/crocheting/sewing products, or similar topic
       - If the user's question is NOT related to BARTERING knitting/crocheting/sewing products, or similar topics, reply exactly:
         "This chatbot is only for negotiating or bartering." Otherwise, respond.
-        - If the user's question is NOT related to knitting/crocheting/sewing products at all, or similar topics, reply exactly:
+        - If the user's question is NOT related to any of the craft materials listed above, or similar topics, reply exactly:
         "This chatbot is only for craft materials." Otherwise, respond.
       - Keep each reply to ≤ 3 sentences.
       - Complete the deal within 4 assistant replies total; if time is short, make your best final offer or accept.
-      - If the requested item isn't available, immediately offer a close alternative (name it and price it).
       - If the offer is made and an agreement has been reached, say "Thank you for negotiating. Please click Finalize
       Offer!"
 
@@ -87,7 +95,6 @@ export default function NegotiationsBot({ textColor, bgColor }) {
       TACTICS:
       - Start near your ask, then move in smaller concessions.
       - Prefer round numbers. Mention simple justifications (condition, accessories, demand).
-      - If the buyer gives a number, you must accept or counter with a new number.
 
       CONVERSATION SO FAR:
       ${conversationHistory}
