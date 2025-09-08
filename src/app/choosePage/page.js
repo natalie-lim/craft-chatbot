@@ -1,48 +1,50 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import React from "react";
 import { Space_Grotesk } from "next/font/google";
-import { doc, updateDoc, onSnapshot } from "firebase/firestore";
-import TypeTaskHeader from "./TypeTaskHeader";
-import Task from "./Task";
 import TypingText from "../TypingText";
-import { db, getCurrentUser } from "../../../firebaseConfig";
-import Popup from "reactjs-popup";
-import IconList from "./IconList";
+import { Scissors, Pin, Spool, User } from "lucide-react";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "600"],
 });
 
-//  Delete a task from Firestore
-async function deleteTaskFromFirestore(taskMap, columnKey, taskIndex) {
-  const user = await getCurrentUser();
-  if (!user) return;
-
-  const updatedTasks = { ...taskMap };
-  const tasks = [...updatedTasks[columnKey].taskDescriptions];
-  tasks.splice(taskIndex, 1);
-
-  updatedTasks[columnKey] = {
-    ...updatedTasks[columnKey],
-    taskDescriptions: tasks,
-  };
-
-  const docRef = doc(db, "userInfo", user.uid);
-  await updateDoc(docRef, { tasks: updatedTasks });
-}
-
-export default function TaskPage() {
+export default function ChoosePage() {
   return (
-    <div>
-      <div className="pt-8 flex flex-col items-center pl-24">
-        <TypingText text={"choose your adventure"} />
+    <div
+      className={`${spaceGrotesk.className} bg-[#f0efeb] min-h-screen w-full`}
+    >
+      <div className="flex flex-col items-center justify-center pt-48 px-6">
+        <TypingText textColor="text-[#d5bdaf]" text="choose your adventure" />
+        <div className="flex flex-row space-x-24 mt-24 p-4">
+          {/* Sewing */}
+          <button className="flex flex-col items-center justify-center rounded-xl h-48 w-48 bg-[#d4afb9] opacity-90 hover:opacity-100 transition">
+            <Scissors className="h-16 w-16 text-white mb-3" />
+            <span className="text-white font-semibold text-lg">Sewing</span>
+          </button>
+
+          {/* Knitting */}
+          <button className="flex flex-col items-center justify-center rounded-xl h-48 w-48 bg-[#d1cfe2] opacity-90 hover:opacity-100 transition">
+            <Pin className="h-16 w-16 text-white mb-3" />
+            <span className="text-white font-semibold text-lg">Knitting</span>
+          </button>
+
+          {/* Crocheting */}
+          <button className="flex flex-col items-center justify-center rounded-xl h-48 w-48 bg-[#9cadce] opacity-90 hover:opacity-100 transition">
+            <Spool className="h-16 w-16 text-white mb-3" />
+            <span className="text-white font-semibold text-lg">Crocheting</span>
+          </button>
+
+          {/* Negotiations */}
+          <button className="flex flex-col items-center justify-center rounded-xl h-48 w-48 bg-[#95b8d1] opacity-90 hover:opacity-100 transition">
+            <User className="h-16 w-16 text-white mb-3" />
+            <span className="text-white font-semibold text-lg">
+              Negotiations
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );
 }
-
-// Export for external use
-export { deleteTaskFromFirestore };
