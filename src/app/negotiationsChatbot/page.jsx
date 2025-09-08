@@ -7,15 +7,16 @@ import TypingText from "../TypingText";
 import { Scissors, Pin, Spool, User } from "lucide-react";
 import NegotiationsBot from "../NegotationsBot";
 
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+export const revalidate = 0;
+
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "600"],
 });
 
-export default function Negotiations({
-  textColor,
-  bgColor,
-}) {
+export default function Negotiations({ textColor, bgColor }) {
   return (
     <div
       className={`${spaceGrotesk.className} bg-[#f0efeb] min-h-screen w-full`}
@@ -24,4 +25,3 @@ export default function Negotiations({
     </div>
   );
 }
-
