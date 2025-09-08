@@ -26,12 +26,6 @@ async function createDoc({ user }) {
       displayName: user.displayName || null,
       email: user.email || null,
       createdAt: serverTimestamp(),
-      // seed defaults (merge prevents overwriting if doc already exists)
-      tasks: {
-        0: { headerDescription: "to-do",       taskDescriptions: ["ex) clean room"], color: "#FFADAD" },
-        1: { headerDescription: "in-progress", taskDescriptions: ["ex) math hw"],    color: "#FFED9E" },
-        2: { headerDescription: "done",        taskDescriptions: [],                  color: "#81DFA7" },
-      },
     },
     { merge: true }
   );
