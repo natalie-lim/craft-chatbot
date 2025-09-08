@@ -3,13 +3,15 @@
 import React, { useState } from "react";
 import { Space_Grotesk } from "next/font/google";
 import TypingText from "./TypingText";
+import { ArrowLeft } from "lucide-react";
+
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "600"],
 });
 
-export default function Chatbot({ category = "none", textColor }) {
+export default function Chatbot({ category = "none", textColor, bgColor }) {
   const [question, setQuestion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState([
@@ -33,8 +35,7 @@ export default function Chatbot({ category = "none", textColor }) {
           (for example, questions about crafting materials, gauge, patterns, 
           techniques, or tools), then provide a helpful answer. 
           If it is clearly unrelated to ${category}, then reply: 
-          "I am not a chatbot for that subject."`
-          
+          "I am not a chatbot for that subject."`,
         }),
       });
       const data = await res.json();
@@ -65,6 +66,17 @@ export default function Chatbot({ category = "none", textColor }) {
     <div
       className={`${spaceGrotesk.className} bg-[#f0efeb] min-h-screen w-full flex flex-col items-center justify-center`}
     >
+    <button
+      onClick={() => router.push("/choosePage")}
+      className="absolute top-4 left-4 flex items-center gap-2 px-4 py-2 
+                 rounded-lg border border-[#967342] bg-[#f0efeb]/70 
+                 text-[#967342] font-semibold shadow-[0_3px_0_0_#967342] 
+                 hover:bg-[#f0efeb]/90 hover:translate-y-[1px] transition"
+    >
+      <ArrowLeft className="h-4 w-4" />
+      Back
+    </button>
+
       <div className="rounded-4xl bg-white px-16 border-b-3 border-1 border-[#967342] flex flex-row space-x-8 items-center justify-center p-4">
         <TypingText
           textColor={textColor}
@@ -128,7 +140,9 @@ export default function Chatbot({ category = "none", textColor }) {
             {messages.map((m, i) =>
               m.role === "user" ? (
                 <div key={i} className="flex justify-end">
-                  <div className="max-w-[75%] p-3 border border-[#967342] rounded-lg bg-[#e6f7ff] text-sm shadow-[0_4px_0_0_#967342]">
+                  <div
+                    className={`max-w-[75%] p-3 border border-[#967342] rounded-lg ${bgColor} bg-opacity-30 text-sm shadow-[0_4px_0_0_#967342]`}
+                  >
                     {m.text}
                   </div>
                 </div>

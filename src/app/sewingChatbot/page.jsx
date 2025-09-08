@@ -15,7 +15,7 @@ export default function SewingChatbot() {
 
   return (
     <div className={`${spaceGrotesk.className} bg-[#f0efeb] min-h-screen w-full`}>
-        <Chatbot category="Sewing" textColor="text-[#d4afb9]"/> 
+        <Chatbot category="Sewing" textColor="text-[#d4afb9]" bgColor="bg-[#d4afb9"/> 
     </div>
   );
 }
