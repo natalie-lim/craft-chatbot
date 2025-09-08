@@ -8,7 +8,7 @@ const spaceGrotesk = Space_Grotesk({
   weight: ['400', '600'],
 });
 
-export default function TypingText({ text, delay = 100 }) {
+export default function TypingText({ text, delay = 100, textColor="text-black", textSize = "text-7xl"}) {
     const [displayedText, setDisplayedText] = useState('');
     const [index, setIndex] = useState(0);
   
@@ -23,5 +23,5 @@ export default function TypingText({ text, delay = 100 }) {
         }
     }, [displayedText, index, text, delay]);
   
-    return <span className={`${spaceGrotesk.className} text-6xl font-semibold pt-4`}>{displayedText}</span>;
+    return <span className={`${spaceGrotesk.className} ${textColor} ${textSize} font-semibold pt-4`}>{displayedText}</span>;
   }

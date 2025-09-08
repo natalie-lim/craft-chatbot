@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Task Manager",
+  title: "Craft Chatbot",
   description: "manage your life with comfort and ease",
 };
 
