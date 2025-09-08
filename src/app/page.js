@@ -64,24 +64,31 @@ async function createDoc({ user }) {
 export default function Home() {
   const router = useRouter();
   const [fadeOut, setFadeOut] = useState(false);
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-  const handleClick = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      setFadeOut(true);
-      console.log("Firebase config:", firebaseConfig);
+const handleClick = async () => {
+  try {
+    const { user } = await signInWithPopup(auth, provider);
 
-      // Wait for fade-out animation
-      setTimeout(async () => {
-        const userLet = result.user;
-        await createDoc({ user: userLet });
-        router.push("/choosePage");
-      }, 1200);
-    } catch (error) {
-      console.error("Error during sign-in:", error.message);
-    }
-  };
+    setFadeOut(true);
 
+    // Fire-and-forget: don't block navigation on Firestore/network
+    createDoc({ user }).catch((e) => {
+      console.error("createDoc failed:", e);
+    });
+
+    // Small delay so the fade-out is visible (tweak if your CSS duration differs)
+    await sleep(300);
+
+    router.push("/choosePage");
+  } catch (err) {
+    const code = err?.code || "auth/unknown";
+    const msg = err?.message || String(err);
+    console.error("Sign-in error:", code, msg);
+    alert(`Sign-in failed: ${code}\n${msg}`);
+  }
+};
+  
   return (
     <div
       className={`transition-opacity bg-[#f0efeb] duration-1000 ${

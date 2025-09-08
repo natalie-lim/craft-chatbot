@@ -1,6 +1,7 @@
+// firebaseConfig.js
 import { initializeApp, getApps } from "firebase/app";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { initializeFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,17 +12,33 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+// Initialize once
+const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
 
+// Auth
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-const db = getFirestore(app);
+// optional: force account chooser each time
+provider.setCustomParameters({ prompt: "select_account" });
+
+// Firestore with long-polling auto-detect to avoid “client is offline”
+const db = initializeFirestore(app, {
+  experimentalAutoDetectLongPolling: true,
+  useFetchStreams: false,
+});
+
+// Helper: await current user
 async function getCurrentUser() {
   return new Promise((resolve, reject) => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      unsubscribe();
-      resolve(user);
-    }, reject);
+    const unsub = onAuthStateChanged(
+      auth,
+      (user) => {
+        unsub();
+        resolve(user);
+      },
+      reject
+    );
   });
-};
+}
+
 export { auth, provider, db, firebaseConfig, getCurrentUser };

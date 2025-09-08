@@ -20,7 +20,7 @@ export default function ChoosePage() {
       className={`${spaceGrotesk.className} bg-[#f0efeb] min-h-screen w-full`}
     >
       <div className="flex flex-col items-center justify-center pt-48 px-6">
-        <TypingText textColor="text-[#d5bdaf]" text="choose your adventure" />
+        <TypingText textColor="text-[#d5bdaf]" text="choose your chatbot" />
         <div className="flex flex-row flex-wrap gap-8 mt-24 p-4">
           {/* Sewing */}
           <button
