@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Space_Grotesk } from "next/font/google";
 import TypingText from "./TypingText";
 import { ArrowLeft } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -12,6 +12,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export default function Chatbot({ category = "none", textColor, bgColor }) {
+  const router = useRouter();
   const [question, setQuestion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState([
