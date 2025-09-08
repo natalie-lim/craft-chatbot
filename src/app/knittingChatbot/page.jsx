@@ -20,7 +20,7 @@ export default function KnittingChatbot() {
     <div
       className={`${spaceGrotesk.className} bg-[#f0efeb] min-h-screen w-full`}
     >
-      <Chatbot category="Knitting" textColor="text-[#cfbaf0]" bgColor="bg-[#cfbaf0]" />
+      <Chatbot category="Knitting" textColor="text-[#cfbaf0]" bgColor="bg-[#E9DFF7]" />
     </div>
   );
 }
