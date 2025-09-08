@@ -5,6 +5,12 @@ The bot leverages an LLM API to stay on-topic around crafts (knitting, crochet, 
 
 ---
 
+## Why OpenAI
+I used OpenAI’s API because it’s the easiest and most reliable way to get high-quality, on-topic responses, and
+also I didn't know what I wanted my chatbot to be at first, so I decided to choose the most versatile.
+
+---
+
 ## Features
 
 - **Google Sign-In using Firebase Authentication** – secure one-click authentication  

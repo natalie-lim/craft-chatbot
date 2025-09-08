@@ -7,10 +7,6 @@ import TypingText from "../TypingText";
 import { Scissors, Pin, Spool, User } from "lucide-react";
 import NegotiationsBot from "../NegotationsBot";
 
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
-export const revalidate = 0;
-
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "600"],
