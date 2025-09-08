@@ -1,10 +1,18 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Space_Grotesk } from "next/font/google";
 import TypingText from "./TypingText";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import {
+  doc,
+  updateDoc,
+  Timestamp,
+  arrayUnion,
+  onSnapshot,
+} from "firebase/firestore";
+import { db, getCurrentUser } from "../../firebaseConfig";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -19,9 +27,51 @@ export default function NegotiationsBot({ textColor, bgColor }) {
   const [isLoading, setIsLoading] = useState(false);
   const [latestUserOffer, setLatestUserOffer] = useState(null);
   const [latestAssistantOffer, setLatestAssistantOffer] = useState(null);
-  const handleSave = () => {
-    console.log("user: " + latestUserOffer);
-    console.log("assistatn: " + latestAssistantOffer);
+  const [savedNegotiations, setSavedNegotiations] = useState([]);
+  const handleSave = async (e) => {
+    if (e && typeof e.preventDefault === "function") e.preventDefault();
+    try {
+      // Find the acceptance message and grab the bot offer immediately before it
+      const acceptanceIndex = [...messages]
+        .map((m, i) => ({ ...m, i }))
+        .reverse()
+        .find(
+          (m) =>
+            m.role === "bot" &&
+            /thank you for accepting the offer!\s*please click finalize offer/i.test(
+              m.text
+            )
+        )?.i;
+
+      let agreedOffer = null;
+      if (typeof acceptanceIndex === "number") {
+        for (let j = acceptanceIndex - 1; j >= 0; j--) {
+          const m = messages[j];
+          if (m.role === "bot" && !/welcome/i.test(m.text)) {
+            agreedOffer = m.text;
+            break;
+          }
+        }
+      }
+
+      // Fallback: if no explicit acceptance was found, use the latest assistant or user offer
+      if (agreedOffer == null) {
+        agreedOffer = latestAssistantOffer ?? latestUserOffer ?? null;
+      }
+
+      const user = await getCurrentUser();
+      if (!user) return;
+      const docRef = doc(db, "userInfo", user.uid);
+      await updateDoc(docRef, {
+        negotiationOffers: arrayUnion({
+          userOffer: agreedOffer,
+          assistantOffer: agreedOffer,
+          savedAt: Timestamp.now(),
+        }),
+      });
+    } catch (err) {
+      console.error("Failed to save latest offers:", err);
+    }
   };
   const [messages, setMessages] = useState([
     {
@@ -29,79 +79,99 @@ export default function NegotiationsBot({ textColor, bgColor }) {
       text: `Welcome to your negotiation bot! We could trade patterns, yarns, even finished products! Offer me something, and I'll counter.`,
     },
   ]);
-  const fetchSuggestion = async (q) => {
+
+  // Subscribe to saved negotiations in Firestore
+  React.useEffect(() => {
+    let unsubscribe;
+    (async () => {
+      const user = await getCurrentUser();
+      if (!user) return;
+      const docRef = doc(db, "userInfo", user.uid);
+      unsubscribe = onSnapshot(docRef, (snap) => {
+        const data = snap.data();
+        const offers = Array.isArray(data?.negotiationOffers)
+          ? data.negotiationOffers
+          : [];
+        const sorted = offers.slice().sort((a, b) => {
+          const ta = a?.savedAt?.toMillis ? a.savedAt.toMillis() : 0;
+          const tb = b?.savedAt?.toMillis ? b.savedAt.toMillis() : 0;
+          return tb - ta;
+        });
+        setSavedNegotiations(sorted);
+      });
+    })();
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
+  }, []);
+
+  // 1) helpers (top-level in component)
+
+  const extractLatestOffers = (transcript) => {
+    let user = null,
+      bot = null;
+    for (let i = transcript.length - 1; i >= 0; i--) {
+      const m = transcript[i];
+      if (m.role === "user" && user == null) user = m.text;
+      if (m.role === "bot" && bot == null) bot = m.text;
+      if (user != null && bot != null) break;
+    }
+    return { user, bot };
+  };
+
+  // 2) make fetchSuggestion pure: accept transcript & offers
+  const fetchSuggestion = async (q, transcript, userOffer, botOffer) => {
     try {
-      const parseOffer = (text) => {
-        const m = [...(text || "").matchAll(/\$?\s*(\d+(?:\.\d+)?)/g)];
-        if (!m.length) return null;
-        const n = parseFloat(m[m.length - 1][1]);
-        return Number.isFinite(n) ? n : null;
-      };
-
-      // derive latest numeric offers from the transcript
-      for (let i = messages.length - 1; i >= 0; i--) {
-        const m = messages[i];
-        const offer = parseOffer(m.text);
-        if (offer != null) {
-          if (m.role === "user" && latestUserOffer == null)
-            setLatestUserOffer(offer);
-          if (m.role === "bot" && latestAssistantOffer == null)
-            setLatestAssistantOffer(offer);
-        }
-        if (latestUserOffer != null && latestAssistantOffer != null) break;
-      }
-
-      // build a compact conversation history
-      const conversationHistory = messages
+      const conversationHistory = transcript
         .map((m) => `${m.role === "user" ? "User" : "Assistant"}: ${m.text}`)
         .join("\n");
 
-      // keep the negotiation short: count assistant barter turns so far
-      const assistantTurns = messages.filter((m) => m.role === "bot").length;
+      // exclude the welcome message from turn counting
+      const assistantTurns = transcript.filter(
+        (m, i) => m.role === "bot" && !/welcome/i.test(m.text)
+      ).length;
       const exchangesRemaining = Math.max(0, 4 - assistantTurns);
 
-      // --- prompt -------------------------------------------------------------
       const prompt = `
-      SYSTEM:
-      You are SellerBot, a friendly but firm seller on a crafts marketplace or a local yarn store.
+SYSTEM:
+You are SellerBot, a friendly but firm seller on a crafts marketplace or a local yarn store.
 
-      GOALS:
-      - Negotiate efficiently and fairly.
-      - Always respond with a concrete offer when making/countering/accepting an offer.
+GOALS:
+- Negotiate efficiently and fairly.
+- Always respond with a concrete offer when making/countering/accepting an offer.
 
-      CRAFT MATERIALS LIST:
-      Fabric, thread, needles, sewing machine, fabric scissors, embroidery scissors, pinking shears, 
-      pins, pin cushion, measuring tape, seam ripper, tailor’s chalk, iron, interfacing, zippers, 
-      buttons, snaps, hooks, patterns, yarn, knitting needles (straight/circular/double-pointed), 
-      crochet hooks, stitch markers, row counters, yarn/tapestry needle, small scissors/snips, 
-      blocking mats, blocking pins, cable needle, project bag.
+CRAFT MATERIALS LIST:
+Fabric, thread, needles, sewing machine, fabric scissors, embroidery scissors, pinking shears, 
+pins, pin cushion, measuring tape, seam ripper, tailor’s chalk, iron, interfacing, zippers, 
+buttons, snaps, hooks, patterns, yarn, knitting needles (straight/circular/double-pointed), 
+crochet hooks, stitch markers, row counters, yarn/tapestry needle, small scissors/snips, 
+blocking mats, blocking pins, cable needle, project bag.
 
-      GUARDRAILS:
-      - Respond with an offer when the question IS related to knitting/crocheting/sewing products, or similar topic
-      - If the user's question is NOT related to BARTERING knitting/crocheting/sewing products, or similar topics, reply exactly:
-        "This chatbot is only for negotiating or bartering." Otherwise, respond.
-        - If the user's question is NOT related to any of the craft materials listed above, or similar topics, reply exactly:
-        "This chatbot is only for craft materials." Otherwise, respond.
-      - Keep each reply to ≤ 3 sentences.
-      - Complete the deal within 4 assistant replies total; if time is short, make your best final offer or accept.
-      - If the offer is made and an agreement has been reached, say "Thank you for negotiating. Please click Finalize
-      Offer!"
+GUARDRAILS:
+- Respond with an offer when the question IS related to knitting/crocheting/sewing products, or similar topic
+- If the user's question is NOT related to BARTERING knitting/crocheting/sewing products, reply exactly:
+  "This chatbot is only for negotiating or bartering."
+- If the user's question is NOT related to any of the craft materials listed above, reply exactly:
+  "This chatbot is only for craft materials."
+- Keep each reply to ≤ 3 sentences.
+- Complete the deal within 4 assistant replies total; if time is short, make your best final offer or accept.
+- If the offer is made and an agreement has been reached, say exactly: "Thank you for accepting the offer! Please click Finalize Offer"
 
-      STATE:
-      - Latest buyer offer: ${latestUserOffer ?? "none"}
-      - Latest seller offer: ${latestAssistantOffer ?? "none"}
-      - Assistant replies remaining (this session): ${exchangesRemaining}
+STATE:
+- Latest buyer offer: ${userOffer ?? "none"}
+- Latest seller offer: ${botOffer ?? "none"}
+- Assistant replies remaining (this session): ${exchangesRemaining}
 
-      TACTICS:
-      - Start near your ask, then move in smaller concessions.
-      - Prefer round numbers. Mention simple justifications (condition, accessories, demand).
+TACTICS:
+- Start near your ask, then move in smaller concessions.
+- Prefer round numbers. Mention simple justifications (condition, accessories, demand).
 
-      CONVERSATION SO FAR:
-      ${conversationHistory}
+CONVERSATION SO FAR:
+${conversationHistory}
 
-      USER: ${q}
-      ASSISTANT:
-      `.trim();
+USER: ${q}
+ASSISTANT:
+`.trim();
 
       const res = await fetch("/api/suggest", {
         method: "POST",
@@ -117,20 +187,35 @@ export default function NegotiationsBot({ textColor, bgColor }) {
     }
   };
 
+  // 3) handleSubmit: build local transcript first, then call fetchSuggestion
   const handleSubmit = async (e) => {
     e.preventDefault();
     const q = question.trim();
     if (!q || isLoading) return;
 
-    // show the user message immediately
-    setMessages((prev) => [...prev, { role: "user", text: q }]);
+    // local transcript that includes this user turn immediately
+    const nextTranscript = [...messages, { role: "user", text: q }];
+
+    // derive latest offers *synchronously* from local transcript
+    const { user, bot } = extractLatestOffers(nextTranscript);
+
+    // reflect the user's new offer in state for UI/history panels
+    if (q != null) setLatestUserOffer(q);
+
+    // optimistic UI
+    setMessages(nextTranscript);
     setQuestion("");
     setIsLoading(true);
 
-    // fetch suggestion and add bot reply
-    const suggestion = await fetchSuggestion(q);
+    // get assistant reply using pure inputs
+    const suggestion = await fetchSuggestion(q, nextTranscript, user, bot);
+
+    // append reply
     setMessages((prev) => [...prev, { role: "bot", text: suggestion }]);
     setIsLoading(false);
+
+    // update assistant latest offer for history panels etc
+    setLatestAssistantOffer(suggestion ?? null);
   };
 
   return (
@@ -268,51 +353,36 @@ export default function NegotiationsBot({ textColor, bgColor }) {
                 )}
               </>
             ) : (
-              // HISTORY VIEW — fills the panel
+              // HISTORY VIEW — list all saved negotiations from Firestore
               <div className="w-full">
-                <div className="mb-2 text-xs text-[#7a6a60]">Saved Offers</div>
-                <div className="rounded-lg border border-[#967342] bg-white shadow-[0_4px_0_0_#967342]">
-                  <ul className="divide-y divide-[#967342]/30 text-sm">
-                    <li className="px-3 py-2 flex items-center justify-between">
-                      <span className="font-medium">You offered</span>
-                      <span className="tabular-nums">$120</span>
-                      <span className="text-xs text-[#7a6a60]">
-                        Sep 8, 1:06 PM
-                      </span>
-                    </li>
-                    <li className="px-3 py-2 flex items-center justify-between bg-[#fff7ed]">
-                      <span className="font-medium">Seller countered</span>
-                      <span className="tabular-nums">$190</span>
-                      <span className="text-xs text-[#7a6a60]">
-                        Sep 8, 1:07 PM
-                      </span>
-                    </li>
-                    <li className="px-3 py-2 flex items-center justify-between">
-                      <span className="font-medium">You offered</span>
-                      <span className="tabular-nums">$150</span>
-                      <span className="text-xs text-[#7a6a60]">
-                        Sep 8, 1:10 PM
-                      </span>
-                    </li>
-                    <li className="px-3 py-2 flex items-center justify-between bg-[#fff7ed]">
-                      <span className="font-medium">Seller countered</span>
-                      <span className="tabular-nums">$180</span>
-                      <span className="text-xs text-[#7a6a60]">
-                        Sep 8, 1:12 PM
-                      </span>
-                    </li>
-                    <li className="px-3 py-2 flex items-center justify-between">
-                      <span className="font-medium">You offered</span>
-                      <span className="tabular-nums">$165</span>
-                      <span className="text-xs text-[#7a6a60]">
-                        Sep 8, 1:14 PM
-                      </span>
-                    </li>
-                  </ul>
+                <div className="mb-2 text-xs text-[#7a6a60]">
+                  Negotiations History
                 </div>
-                <div className="mt-2 text-xs text-[#7a6a60]">
-                  Tip: This is placeholder data. Replace with parsed offers from{" "}
-                  <code>messages</code> when ready.
+                <div className="rounded-lg border border-[#967342] bg-white shadow-[0_4px_0_0_#967342]">
+                  {savedNegotiations.length === 0 ? (
+                    <div className="px-3 py-3 text-sm text-[#7a6a60]">
+                      No finalized offers yet.
+                    </div>
+                  ) : (
+                    <ul className="divide-y divide-[#967342]/30 text-sm">
+                      {savedNegotiations.map((entry, idx) => (
+                        <li
+                          key={idx}
+                          className="px-3 py-2 flex items-center justify-between"
+                        >
+                          <span className="font-bold pr-4">Offer</span>
+                          <span className="tabular-nums">
+                            {entry?.assistantOffer || entry?.userOffer || "—"}
+                          </span>
+                          <span className="text-xs text-[#7a6a60]">
+                            {entry?.savedAt?.toDate
+                              ? entry.savedAt.toDate().toLocaleString()
+                              : ""}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             )}
@@ -342,7 +412,7 @@ export default function NegotiationsBot({ textColor, bgColor }) {
               </button>{" "}
               <button
                 className="px-4 py-2 text-sm font-semibold border border-[#967342] rounded bg-[#f6efe8] hover:bg-white active:translate-y-[1px] shadow-[0_4px_0_0_#967342] disabled:opacity-60"
-                type="submit"
+                type="button"
                 onClick={handleSave}
               >
                 Finalize Offer
