@@ -1,5 +1,8 @@
 # Craft Chatbot
 
+### Video Demo:
+https://www.loom.com/share/fd38add23d394a98868643bcf2eac9dc 
+
 A Firebase-authenticated, real-time chatbot application built with React, Next.js, and Tailwind CSS.  
 The bot leverages an LLM API to stay on-topic around crafts (knitting, crochet, sewing, etc.) and can also act as a **negotiation partner** for bartering materials, patterns, and finished projects. Because of firebase, it also keeps track of negotiation offers in the past.
 
